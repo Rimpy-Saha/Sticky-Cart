@@ -64,6 +64,15 @@ nor_review:
   css:
     theme:
       css/cart-checkout/review_cart.css: {}
+
+nor-sticky-add-to-cart:
+  js:
+    js/nor-sticky-add-to-cart.js: {}
+  css:
+    theme:
+      css/nor-sticky-add-to-cart.css: {}
+
+
 ## End New Checkout ##
 
 status-messages-close:

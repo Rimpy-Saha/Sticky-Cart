@@ -1247,7 +1247,7 @@
       <!-- End Product Content -->
       <div class="c-shop-product-tab-1 pb-0">
         <div class="nav-justified  bootstrap-nav-wrapper">
-          <ul class="nav nav-justified  nav-tabs">
+          <ul class="nav nav-justified  nav-tabs" id ="nor_norproduct_doc_nav_tabs">
             {% if node.body.0.value|length > 0 %}
             <li class="nav_item " id="overview-nav"><a href="#overview">{{ 'Overview'|t }}</a></li>
             {% endif %}
@@ -1332,6 +1332,12 @@
               <a href="#documentation" class="review-toggler" id="reviews" data-bs-toggle="tab">{{ 'Reviews'|t }}</a>
             </li> #}
           </ul>
+
+          <!-- Sticky Add to Cart placeholder -->
+          <div id="sticky-addtocart">
+              This will be where we make the sticky add to cart
+          </div>
+
   
           <div class="tab-content nav-justified">
             <div class="tab-pane active">

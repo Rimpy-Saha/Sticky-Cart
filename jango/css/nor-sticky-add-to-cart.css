@@ -1,0 +1,40 @@
+/* Main nav sticky */
+#nor_norproduct_doc_nav_tabs {
+    position: sticky;
+    top: 200px;
+    background: #fff;
+    z-index: 1000;
+    border-bottom: 1px solid #ccc;
+}
+
+
+/* Add to cart bar */
+#sticky-addtocart {
+    position: fixed;
+    top: 250px; /* height of main nav, adjust if needed */
+    width: 100%;
+    background: #999999; /* dark grey but not too dark */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    transform: translateY(-110%);
+    opacity: 0;                   /* hide visually */
+    pointer-events: none;         /* avoid clicking when hidden */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 999;
+}
+
+/* When active (slid down) */
+#sticky-addtocart.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.sticky-cart-inner > div {
+  margin: 0 10px;
+}

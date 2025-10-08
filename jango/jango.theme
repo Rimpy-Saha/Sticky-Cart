@@ -896,6 +896,10 @@ function jango_preprocess_node(&$variables){
         }
     }
 
+    if ($variables['node']->getType() == 'norproduct') {
+        $variables['#attached']['library'][] = 'jango/nor-sticky-add-to-cart';       
+    }
+
     //     if ($variables['node']->getType() == 'customer_story') {
     //         if ($variables['node']->hasField('field_related_products')) {
     //             $related_products = $variables['node']->get('field_related_products')->referencedEntities();
