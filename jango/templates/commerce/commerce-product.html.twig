@@ -1060,7 +1060,7 @@
             {% endif %}
   
           </div>
-          <div class="col-md-6">
+          <div  id="sticky-form-wrapper" class="col-md-6">
             <div class="c-product-meta">
               <div id="desktop-title" class="c-content-title-1 desktop">
                 <h3 class="c-font-uppercase c-font-bold">{{ product.title }}</h3>
@@ -1086,6 +1086,9 @@
                       </div>
                   </div>
                 {% endif %}
+                <div class="product_variation_sku_wrapper_hidden" id = "nor_sticky_sku">
+                  <span class="notranslate">{{product.variation_sku}}</span>
+                </div>
               </div>
               <div class="c-product-badge">
                 {% if product.field_sale_label[0]['#markup'] != 'Off' %}
@@ -1119,7 +1122,7 @@
                 </button>
                 {% endif %}
               {% endif %}
-
+              
               {% if '/product/' in url %}
               <div class="c-product-price">
                 {# <script>
@@ -1156,13 +1159,17 @@
               <div class="product_variation_sku_wrapper">
                 <div class="label">SKU</div><span class="notranslate">{{product.variation_sku}}</span>
               </div>
-              
+              {# Independent element to show selected format #}
+              <div id="nor_sticky_format">Format: {% if product.variations|length > 0 %}{{ product.variations|first.label }}{% else %}None{% endif %}</div>
+              {# Independent element to show selected format #}
+              <div id="nor_sticky_size">Size: {% if product.variations|length > 0 %}{{ product.variations|first.label }}{% else %}None{% endif %}</div>
+
               {{ product.variations }}
 
               {% if logged_in == false %}
                 {# {% if restricted_country %}
                 {% else %} #}
-                  <p><strong><a href="https://norgenbiotek.com/user/login" target="_blank">Register today</a></strong> to receive an exclusive <strong><u>15% off*</u></strong> on your first order.</p>
+                  <p id ="nor_anonymous_register_today"><strong><a href="https://norgenbiotek.com/user/login" target="_blank">Register today</a></strong> to receive an exclusive <strong><u>15% off*</u></strong> on your first order.</p>
                 {# {% endif %} #}
               {% endif %}
   
