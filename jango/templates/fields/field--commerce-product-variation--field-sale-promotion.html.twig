@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Theme override for a field.
+ *
+ * To override output, copy the "field.html.twig" from the templates directory
+ * to your theme's directory and customize it, just like customizing other
+ * Drupal templates such as page.html.twig or node.html.twig.
+ *
+ * Instead of overriding the theming for all fields, you can also just override
+ * theming for a subset of fields using
+ * @link themeable Theme hook suggestions. @endlink For example,
+ * here are some theme hook suggestions that can be used for a field_foo field
+ * on an article node type:
+ * - field--node--field-foo--article.html.twig
+ * - field--node--field-foo.html.twig
+ * - field--node--article.html.twig
+ * - field--field-foo.html.twig
+ * - field--text-with-summary.html.twig
+ * - field.html.twig
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - label_hidden: Whether to show the field label or not.
+ * - title_attributes: HTML attributes for the title.
+ * - label: The label for the field.
+ * - multiple: TRUE if a field can contain multiple items.
+ * - items: List of all the field items. Each item contains:
+ *   - attributes: List of HTML attributes for each item.
+ *   - content: The field item's content.
+ * - entity_type: The entity type to which the field belongs.
+ * - field_name: The name of the field.
+ * - field_type: The type of the field.
+ * - label_display: The display settings for the label.
+ *
+ * @see template_preprocess_field()
+ */
+#}
+
+
+
+
+{% if field_type == "boolean" and mutiple == false and items.0.content['#markup'] == "On" %}
+  <div {{ attributes.addClass('promo-div-div') }}> {# adding these classes lets the display update on variation change #}
+ 	
+  {#rna#}
+  {# {% if (default_variation == '72800' or default_variation == '73100' or default_variation == '73600' or default_variation == '73700' or default_variation == '73400' or default_variation == '73710' or default_variation == '73110' or default_variation == '73120' or default_variation == '73200' or default_variation == '73210' or default_variation == '73220' or default_variation == '73300' or default_variation == '73310' or default_variation == '73320' or default_variation == '73410' or default_variation == '73420' or default_variation == '73500' or default_variation == '73510' or default_variation == '73520' or default_variation == '73720' or default_variation == '73900' or default_variation == '73910' or default_variation == '73920' or default_variation == '58000' or default_variation == '57400' or default_variation == '60400' or default_variation == '58300' or default_variation == '57700' or default_variation == '47200' or default_variation == '57800' or default_variation == '60600' or default_variation == '58500' or default_variation == '58600' or default_variation == '57500' or default_variation == '57600' or default_variation == '59500' or default_variation == '61100' or default_variation == '57900' or default_variation == '60700' or default_variation == '65300' or default_variation == '68400' or default_variation == '58400' or default_variation == '59400' or default_variation == '59600' or default_variation == '60800' or default_variation == '61200' or default_variation == '61300' or default_variation == '65400' or default_variation == '58700' or default_variation == '58800' or default_variation == '59200' or default_variation == '59300' or default_variation == '60900' or default_variation == '61400' or default_variation == '17200' or default_variation == '37500' or default_variation == '48500' or default_variation == '48400' or default_variation == '17250' or default_variation == '48300' or default_variation == '35300' or default_variation == '24300' or default_variation == '75400' or default_variation == '75500' or default_variation == '35350' or default_variation == '17270' or default_variation == '26800' or default_variation == '25370' or default_variation == '24350' or default_variation == '24380' or default_variation == '61000' or default_variation == '25100' or default_variation == '51800' or default_variation == '21000' or default_variation == '25800' or default_variation == '29000' or default_variation == '25700' or default_variation == '29650' or default_variation == '27750' or default_variation == '62000' or default_variation == '23600' or default_variation == '25850' or default_variation == '55000' ) %}
+  <a href="https://norgenbiotek.com/promotions/rna-promotion"><div class="promo-div"><span class="glyphicon glyphicon-tag"></span><p>Save up to 50% off* & more</p></div></a> #}
+  {# liquid biopsy 2025 #}
+  {# {% if (default_variation == 'RU49000' or default_variation == '65400' or default_variation == 'RU35720' or default_variation == '46200' or default_variation == '65300' or default_variation == 'RU53800' or default_variation == '69100' or default_variation == '69300' or default_variation == 'RU45400' or default_variation == 'RU55400' or default_variation == '69200' or default_variation == '45690-B' or default_variation == 'RU35200' or default_variation == 'RU62900' or default_variation == '63950' or default_variation == '50600' or default_variation == '51200' or default_variation == '55100' or default_variation == '55500' or default_variation == '55600' or default_variation == '55800' or default_variation == '55200' or default_variation == '68300' or default_variation == '68000' or default_variation == '29500' or default_variation == '42800' or default_variation == '51000' or default_variation == '50900' or default_variation == '55000' or default_variation == '56100' or default_variation == '56200' or default_variation == '59500' or default_variation == '59600' or default_variation == '58300' or default_variation == '58500' or default_variation == '58600' or default_variation == '68200' or default_variation == '59700' or default_variation == '57400' or default_variation == '57500' or default_variation == '57600' or default_variation == '56300' or default_variation == '51300' or default_variation == '56500' or default_variation == '68100' or default_variation == '56400' or default_variation == '73100' or default_variation == '73110' or default_variation == '73120' or default_variation == '73400' or default_variation == '73410' or default_variation == '73420' or default_variation == '73720' or default_variation == '73700' or default_variation == '73710' or default_variation == '73720' or default_variation == '31200' or default_variation == '46300' or default_variation == '46380' or default_variation == '51400' or default_variation == '46350' or default_variation == '59800' or default_variation == '62600' or default_variation == '36000' or default_variation == '43400' or default_variation == '43500' or default_variation == '21200' or default_variation == '21250' or default_variation == '18113' or default_variation == '18118' or default_variation == '18122' or default_variation == '18129' or default_variation == '18126' or default_variation == '18100' or default_variation == '50100' or default_variation == '48800' or default_variation == '47050' or default_variation == '56600' or default_variation == '56700' or default_variation == '56800' or default_variation == '22550' or default_variation == '29000' or default_variation == '29600' or default_variation == '29650' or default_variation == '56900' or default_variation == '57000' or default_variation == '57100' or default_variation == '47200' or default_variation == '57700' or default_variation == '58700' or default_variation == '58400' or default_variation == '57800' or default_variation == '57900' or default_variation == '59900' or default_variation == '21600' or default_variation == '73210' or default_variation == '73200' or default_variation == '17400' or default_variation == '52300' or default_variation == '58800' or default_variation == '60000' or default_variation == '60100' or default_variation == '59300' or default_variation == '59200' or default_variation == '67900' or default_variation == '59400' or default_variation == '72900' or default_variation == '73220' or default_variation == '73500' or default_variation == '73510' or default_variation == '73520' or default_variation == '73900' or default_variation == '73910' or default_variation == '73920') %}
+    <a href="https://norgenbiotek.com/liquidbiopsy"><div class="promo-div"><span class="glyphicon glyphicon-tag"></span><p>Save on Shipping </p></div></a>
+  {% endif %} #}
+  </div>
+{% else %}
+  <div {{ attributes.addClass('data', 'price', 'smart-save', 'empty') }}></div>
+{% endif %}

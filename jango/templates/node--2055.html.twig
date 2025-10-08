@@ -1,0 +1,29 @@
+
+<article{{ attributes }}>
+
+  {{ title_prefix }}
+  {% if label and not page %}
+    <h2{{ title_attributes }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% if display_submitted %}
+    <footer>
+      {{ author_picture }}
+      <div{{ author_attributes }}>
+        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+        {{ metadata }}
+      </div>
+    </footer>
+  {% endif %}
+  {{ custom_breadcrumb|raw }}
+  <div{{ content_attributes }}>
+    <p>Random Number: {{ random_number }}</p>
+    {{ content }}
+  </div>
+
+</article>
+
+{{ drupal_view('duplicate_of_ajax_filterable_products', 'block_1') }}

@@ -1,0 +1,927 @@
+{#
+/**
+ * @file
+ * Theme override to display a block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - provider: The module or other provider that provided this block plugin.
+ *   - Block plugin specific settings will also be stored here.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules, intended to
+ *   be added to the main container tag of this template.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ */
+#}
+<style>
+/* Magnetic Bead Launch Styling */
+
+#magbead-home-banner {
+  background:url('https://drupal11.norgenbiotek.com/sites/default/files/images/home/2025-02-27-magbead-launch/magnetic-bead-automation-banner.png');
+  background-position: right;
+  background-size: cover;
+}
+
+#magbead-home-banner .container{
+  top: 50%;
+  position: relative;
+  transform: translateY(-50%);
+}
+#magbead-home-banner .text{
+  max-width:630px;
+  color:var(--norgen-primary-blue);
+}
+#magbead-home-banner .text h1{
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 1;
+  color:var(--norgen-primary-blue);
+  margin-bottom:0px;
+}
+#magbead-home-banner .text h1 span{
+  letter-spacing: 2px;
+  font-size: 1.5em;
+  line-height: 1.1;
+}
+#magbead-home-banner .text div{
+  font-size:34px;
+  color:var(--norgen-primary-blue);
+  font-weight:700;
+}
+
+#magbead-home-banner .text hr{
+  border-top:4px solid var(--norgen-tertiary-rna-red);
+}
+#magbead-home-banner .btn{
+  background-color: var(--norgen-tertiary-rna-red);
+  border: none;
+  padding: 10px 20px;
+}
+@media only screen and (max-width:1200px){
+  #magbead-home-banner {
+    background:linear-gradient(0deg, #ffffff85, #ffffff85),url('https://drupal11.norgenbiotek.com/sites/default/files/images/home/2025-02-27-magbead-launch/magnetic-bead-automation-banner.png');
+    background-position: right;
+    background-size: cover;
+  }
+}
+@media only screen and (max-width:700px){
+  #magbead-home-banner .text{
+    margin: auto;
+    max-width: 400px;
+  }
+  #magbead-home-banner .text h1{
+    font-size:28px;
+  }
+}
+/* End of Magnetic Bead Launch Styling */
+
+
+/* proudly canadian */
+.home-banner#proudly-canadian-banner{
+  position:relative;
+  background:url('https://drupal11.norgenbiotek.com/sites/default/files/images/home/proudly-canadian-v2.jpg');
+  background-size: cover;
+  background-position: center right;
+  background-repeat:no-repeat;
+}
+.banner-grid-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  height:600px;
+  background:url(https://drupal11.norgenbiotek.com/sites/default/files/images/home/canadian.png);
+}
+
+.banner-grid-2:after{
+  background:gray;
+}
+.home-banner#proudly-canadian-banner .banner-text-abs{
+  position:relative;
+  transform:translateY(-50%);
+  top:50%;
+  margin: auto;
+}
+.home-banner#proudly-canadian-banner .banner-text-abs h1{
+  color:white;
+  font-size: calc(17px + 2vw);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom:20px;
+}
+@media screen and (min-width:2600px){
+  .home-banner#proudly-canadian-banner .banner-text-abs h1{
+    font-size:69px;
+  }
+}
+@media screen and (min-width:1580px) and (max-width:2000px){
+  .home-banner#proudly-canadian-banner .banner-text-abs{
+    left:-200px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .home-banner#proudly-canadian-banner{
+    background-position: center, calc(100% + 150px);
+    background-image: linear-gradient(0deg , #970000e8, #c82828a6),url('https://drupal11.norgenbiotek.com/sites/default/files/images/home/proudly-canadian-v2.jpg');
+  }
+  .home-banner#proudly-canadian-banner .banner-text-abs {
+    text-align:center;
+  }
+}
+
+
+@media only screen and (max-width: 515px) {
+
+  .home-banner#proudly-canadian-banner .banner-text-abs {
+    width:auto;
+  }
+}
+@media only screen and (max-width: 300px) {
+
+  .home-banner#proudly-canadian-banner .banner-text-abs {
+    width:auto;
+  }
+  .home-banner#proudly-canadian-banner .banner-text-abs h1 {
+    font-size: 30px;
+  }
+  .home-banner#proudly-canadian-banner .banner-text-abs a {
+    width: -webkit-fill-available;
+    white-space: pre-wrap;
+  }
+
+}
+/* end of proudly canadian */
+
+
+/* EXTRAClean Promo Styling */
+
+#extraclean-hero-banner {
+  background: url(https://drupal11.norgenbiotek.com/sites/default/files/images/home/2025-rna-campaign-web-banner.png), url(https://drupal11.norgenbiotek.com/sites/default/files/images/home/Extraclean_BG.png);
+  background-position: bottom right;
+  background-size: auto 100%;
+  background-repeat: no-repeat, repeat-x;
+}
+.home-banner#extraclean-hero-banner h1{
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.2;
+  color:#004893;
+}
+
+#extraclean-hero-banner .text{
+  max-width: 570px;
+  position:relative;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+@media screen and (min-width:2600px){
+  #extraclean-hero-banner{
+    background-position: calc((100vw - 1170px) / 2) bottom;
+  }
+}
+@media screen and (min-width:1580px) and (max-width:2000px){
+  #extraclean-hero-banner .text{
+    left:-200px;
+  }
+}
+@media screen and (min-width:1200px) and (max-width:1580px){
+  #extraclean-hero-banner .text{
+    background-color: #ffffffc9;
+    padding: 1em;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+  }
+}
+@media screen and (max-width:1200px){
+  #extraclean-hero-banner{
+    background-image:url(https://drupal11.norgenbiotek.com/sites/default/files/images/home/Extraclean_BG.png);
+  }
+  #extraclean-hero-banner .text{
+    max-width: 100%;
+    text-align:center;
+  }
+  #extraclean-hero-banner .text .plus{
+    justify-content:center;
+    text-align:left;
+  }
+}
+@media screen and (max-width:500px){
+  .home-banner#extraclean-hero-banner h1{
+    font-size:40px;
+  }
+}
+/* End of EXTRAClean Promo Styling */
+
+/* Liquid Biopsy Webinar Styling */
+#liquid-biopsy-webinar-hero-banner {
+  background-image: url('https://drupal11.norgenbiotek.com/sites/default/files/images/home/liquid-biopsy-webinar-banner-bg.png');
+  background-position: bottom right;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+#liquid-biopsy-webinar-hero-banner .text img{
+  position:absolute;
+  left:80%;
+  bottom:0px;
+  height: 100%;
+}
+#liquid-biopsy-webinar-hero-banner .webinar-round{
+  background-color:var(--norgen-tertiary-rna-red);
+  border-radius:20px;
+  padding:10px 20px;
+  display:inline-block;
+}
+#liquid-biopsy-webinar-hero-banner h1, #liquid-biopsy-webinar-hero-banner p, #liquid-biopsy-webinar-hero-banner span{
+  color:white;
+}
+#liquid-biopsy-webinar-hero-banner .text{
+  position: relative;
+  max-width:900px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  height:100%;
+}
+#liquid-biopsy-webinar-hero-banner .text > *{
+  margin-bottom:20px;
+  display: inline-block;
+  width: fit-content;
+}
+@media screen and (max-width:1400px){
+  #liquid-biopsy-webinar-hero-banner{
+    background-position: bottom left;
+  }
+  #liquid-biopsy-webinar-hero-banner .text img{
+    display:none;
+  }
+}
+@media screen and (max-width:1200px){
+  #liquid-biopsy-webinar-hero-banner .text{
+    text-align: center;
+    margin: auto;
+    align-items: center;
+  }
+}
+/* End of Liquid Biopsy Webinar Styling */
+
+/* Liquid Biopsy Promo Styling */
+#liquid-biopsy-promo-banner{
+  background-image: linear-gradient(to right, #345fac 50%, transparent 70%), url('/sites/default/files/images/AdobeStock_490486537_2cc_full computer.tif.png'), url('/sites/default/files/images/Asset 28.png'), linear-gradient(to right, #345fac 80%, #345eac80 100%);
+  background-position: left, bottom right, right, center;
+  background-repeat: no-repeat, no-repeat, repeat, no-repeat;
+  background-size: contain, contain, contain, cover;
+}
+#liquid-biopsy-promo-banner .text{
+  position: relative;
+  max-width:60%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  height:100%;
+  color:white;
+}
+#liquid-biopsy-promo-banner .text > *{
+  margin-bottom: 20px;
+  display: inline-block;
+  width: fit-content;
+}
+@media screen and (max-width: 1200px){
+  #liquid-biopsy-promo-banner{
+    background-image: linear-gradient(to right, #345eac80 0%, #345eac80 100%), url('/sites/default/files/images/Asset 28.png'), linear-gradient(to right, #345fac 0%, #345eac 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #liquid-biopsy-promo-banner .text {
+    text-align: center;
+    margin: auto;
+    align-items: center;
+    max-width:100%;
+  }
+}
+/* End fo Liquid Biopsy Promo Styling */
+
+/* EZ Collect Styling */
+#ezcollect-banner .text{
+  position: relative;
+  max-width:60%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  height:100%;
+  color:white;
+}
+#ezcollect-banner .new-tag{
+  background-color:var(--norgen-tertiary-rna-red);
+  border-radius:10px;
+  padding:5px 10px;
+  display:inline-block;
+  font-weight:bold;
+  text-transform: uppercase;
+  font-size:1.5em;
+  margin-right: 20px;
+}
+#ezcollect-banner .ezcollect-devices{
+  position:absolute;
+  left:60%;
+  top:0px;
+  bottom:0px;
+  opacity:0%;
+  max-height:0px;
+  margin:auto;
+  animation: ezcollect-fadein 1s ease-in-out 0.5s 1;
+  animation-fill-mode: forwards;
+}
+@keyframes ezcollect-fadein{
+  0% {max-height:0%;opacity:0%;}
+  100% {max-height: min(500px, 80%);opacity:100%;}
+}
+#ezcollect-banner h1{
+  color:white;
+}
+#ezcollect-banner img.logo{
+  max-width:300px;
+  max-height:50px;
+  background-color:unset;
+  border-radius:0px;
+  padding:0px;
+}
+#ezcollect-banner video{
+  position:absolute;
+  top:0px;
+}
+#ezcollect-banner .text > *{
+  margin-bottom: 20px;
+  display: inline-block;
+  width: fit-content;
+}
+@media screen and (max-width: 1200px){
+  #ezcollect-banner{
+    background-image: linear-gradient(to right, #345eac80 0%, #345eac80 100%), url('/sites/default/files/images/Asset 28.png'), linear-gradient(to right, #345fac 0%, #345eac 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #ezcollect-banner .text {
+    text-align: center;
+    margin: auto;
+    align-items: center;
+    max-width:100%;
+  }
+  #ezcollect-banner .ezcollect-devices{
+    display:none;
+  }
+}
+/* End of EZ Collect Styling */
+
+
+/* Carousel Styling */
+#homeBannerCarousel .carousel-control-prev, #homeBannerCarousel .carousel-control-next{
+  opacity:0.25;
+}
+#homeBannerCarousel .carousel-control-prev:hover, #homeBannerCarousel .carousel-control-next:hover, #homeBannerCarousel .carousel-control-prev:focus, #homeBannerCarousel .carousel-control-next:focus{
+  opacity:0.75;
+}
+#homeBannerCarousel .carousel-control-next{
+  background-image: linear-gradient(to right, transparent 5%, #00489760 100%);
+}
+#homeBannerCarousel .carousel-control-prev{
+  background-image: linear-gradient(to right, #00489760 5%, transparent 100%);
+}
+#homeBannerCarousel .carousel-control-next > span{
+  position: absolute;
+  top: 50%;
+  right: 15px;
+}
+#homeBannerCarousel .carousel-control-[rev > span{
+  position: absolute;
+  top: 50%;
+  left: 15px;
+}
+#homeBannerCarousel .carousel-indicators{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* background-color: #ebf1f7; */
+  width: fit-content;
+  margin-left: 0px;
+  padding: 10px;
+  gap: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-bottom: 0px;
+  max-width: 100%;
+  margin: auto;
+  bottom: 0px;
+  border-radius:10px;
+}
+#homeBannerCarousel .carousel-indicators li{
+  width: auto;
+  height: auto;
+  min-width: 275px;
+  max-width: 300px;
+  text-indent: 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 10px 20px;
+  color: white;
+  position: relative;
+  margin: 0px;
+  flex: 1;
+  flex-direction: column;
+  align-self: stretch;
+  color: var(--norgen-primary-blue);
+  background-color:#ffffffbf;
+  backdrop-filter:blur(10px);
+  border-radius:10px;
+  box-shadow:0px 2px 10px -5px var(--norgen-primary-blue-dark);
+}
+#homeBannerCarousel .carousel-indicators li div.webinar::before{
+  content: '\f26c';
+  font-family: "Font Awesome 5 Free";
+  font-size: 1.25em;
+}
+#homeBannerCarousel .carousel-indicators li div.promo::before{
+  content: '\f02c';
+  font-family: "Font Awesome 5 Free";
+  font-size: 1.25em;
+}
+#homeBannerCarousel .carousel-indicators li div.info::before,
+#homeBannerCarousel .carousel-indicators li div::before{
+  content: '\f05a';
+  font-family: "Font Awesome 5 Free";
+  font-size: 1.25em;
+}
+
+#homeBannerCarousel .carousel-indicators li > div{
+  z-index:2;
+  position: relative;
+  font-weight: 600;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  height: 100%;
+}
+#homeBannerCarousel .carousel-indicators li.active, #homeBannerCarousel .carousel-indicators li:not(.active):hover{
+  border:2px solid var(--norgen-primary-blue);
+ /*  background-color:unset; */
+}
+#homeBannerCarousel .carousel-indicators li:not(.active):hover{
+  background-color:#b9daffbf;
+}
+#homeBannerCarousel .carousel-indicators li:not(.active){
+  border:2px solid transparent;
+}
+#homeBannerCarousel .carousel-indicators li.active::after{
+  content: '';
+  background-color: var(--norgen-primary-blue);
+  height: 2px;
+  width: 0%;
+  display: block;
+  position: relative;
+  bottom: 0px;
+  animation:none;
+}
+#homeBannerCarousel .carousel-indicators li.active.animate::after {
+  animation-name: carousel-indicator-progress;
+  animation-duration: var(--carousel-interval, 10s);
+  animation-timing-function:linear;
+}
+
+#homeBannerCarousel.paused .carousel-indicators li.active::after{
+  animation-play-state: paused;
+}
+
+@keyframes carousel-indicator-progress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:1660px){
+  #homeBannerCarousel .carousel-control-prev, #homeBannerCarousel .carousel-control-next{
+    width:5%;
+  }
+}
+@media screen and (max-width:1300px){
+  #homeBannerCarousel .carousel-control-prev, #homeBannerCarousel .carousel-control-next{
+    width:50px;
+  }
+}
+
+
+/* FORMATTING MORE THAN 3 SLIDES */
+/* Depending how many carousel indicators you have, you can create media queries for these 2 styles to add space to the bottom of the carousel slides */
+/* 1) increase .homer-banner .text padding bottom, and increase .home-banner height */
+.home-banner .text{
+  padding-bottom:100px;
+}
+.home-banner{
+  height:750px;
+  border-top:1px solid gray;
+  /* border-bottom:1px solid gray; */
+}
+/* FORMATTING MORE THAN 3 SLIDES */
+
+@media screen and (max-width:600px){
+  #homeBannerCarousel .carousel-indicators li > div .text{
+    display:none;
+  }
+  #homeBannerCarousel .carousel-indicators li{
+    min-width:50px;
+  }
+}
+
+/* End of Carousel Styling */
+
+
+.banner-side{
+  background:url("/sites/default/files/images/home/Virology Lab_microscope-38-Edited.png");
+  height: -webkit-fill-available;
+  background-size: cover;
+}
+.banner-grid{
+  display:grid;
+  grid-template-columns:0fr 1fr;
+  height: -webkit-fill-available;
+  align-items: center;
+}
+.verticle-side{
+  writing-mode:vertical-rl;
+  padding: 14px;
+  font-size:25px;
+  color:#004893;
+}
+
+.banner-text{
+  border: 1px solid gray;
+  top: 47%;
+  transform: translateY(-50%);
+  position: relative;
+  width: 80%;
+  padding: 100px 0;
+}
+.banner-text div{
+  width:55%;
+}
+.home-banner h1{
+  font-size: 50px;
+  font-weight: 800;
+  line-height: 1.2;
+  color:#004893;
+}
+@media only screen and (max-width: 500px) {
+  .home-banner h1{
+    font-size:40px;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .home-banner{
+    height:750px;
+  }
+}
+</style>
+
+<noscript>
+<style>
+  #homeBannerCarousel .carousel-indicators li.active::after,
+  #homeBannerCarousel .carousel-indicators li.active.animate::after {
+    animation-name: none;
+    width: 100%;
+  }
+</style>
+</noscript>
+
+{# <script>console.log('{{userCountry}}')</script> #}
+{% if userCountry == 'CA' %}
+<div id="homeBannerCarousel" class="carousel slide carousel-fade1 dexp_carousel" data-ride="carousel" data-interval="10000" data-pause-"false">
+  <div class="carousel-inner prodBottom">
+    <!-- Carousel items -->
+    {# <div class='carousel-item active'>
+      <div class="item">
+        <section class="home-banner" id="liquid-biopsy-promo-banner">
+          <div class="container" style="height:100%;">
+            <div class="text">
+              <h1 style="color:white;">Liquid Biopsy: The Future of Non-Invasive Cancer Research</h1>
+              <p style="line-height:1.5">
+                Spend over $1000 on <b>plasma/serum</b>, <b>urine</b>, or <b>saliva</b> products and get <b>FREE SHIPPING</b>!<br>
+              </p>
+              <a class="btn btn-rna c-font-uppercase c-font-bold" href="/liquidbiopsy" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">Order Now</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div> #}
+    {# EZCollect #}
+    <div class='carousel-item active'>
+      <div class="item">
+        <section class="home-banner" id="ezcollect-banner">
+          <video autoplay muted loop style="object-fit:cover;width:100%;height:100%;">
+            <source src="https://drupal11.norgenbiotek.com/sites/default/files/images/home/2025-05-30-EZCollect/ezcollect-bg-banner-sm.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="container" style="height:100%;">
+            <div class="text">
+              <div style="width:100%;"><span class="new-tag">NEW!</span><img class="logo" src="https://drupal11.norgenbiotek.com/sites/default/files/images/home/2025-05-30-EZCollect/ezcollect-logo.svg"></div>
+              <h1>User Friendly, All in One Saliva Collection &amp; Preservation Devices</h1>
+              <div>
+                <a class="btn btn-rna c-font-uppercase c-font-bold" href="/product/ezcollect-saliva-rna-device" style="box-shadow: rgba(255, 255, 255, 0.25) 0px 6px 12px -2px, rgba(255, 255, 255, 0.3) 0px 3px 7px -3px;">RNA</a>
+                <a class="btn btn-rna c-font-uppercase c-font-bold" href="/product/ezcollect-saliva-dna-device" style="box-shadow: rgba(255, 255, 255, 0.25) 0px 6px 12px -2px, rgba(255, 255, 255, 0.3) 0px 3px 7px -3px;background-color:#134b96;">DNA</a>
+              </div>
+            </div>
+            <img class="ezcollect-devices" src="https://drupal11.norgenbiotek.com/sites/default/files/images/home/2025-05-30-EZCollect/ezcollect-devices.png">
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="item">
+        <section class="home-banner" id="proudly-canadian-banner">
+          <div class="banner-text-abs container">
+            <h1>Quality Canadian Products,<br>Trusted Worldwide.</h1>
+            <a class="btn btn-primary" href="https://drupal11.norgenbiotek.com/products" style="border: 4px solid white;
+            background: none;
+            font-size: 34px;
+            padding:10px 30px;
+            font-weight: 700;
+            padding:10px 30px;
+            border-radius:10px;">Shop Now</a>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class='carousel-item'>
+      <div class="item">
+        <section class="home-banner" id="liquid-biopsy-webinar-hero-banner">
+          <div class="container" style="height:100%;">
+            <div class="text">
+              <span class="webinar-round">Webinar with Live Q&amp;A</span>
+              <h1>Transforming Cancer Care with cfDNA from Liquid Biopsy: A Prostate Cancer Perspective</h1>
+              <p style="line-height:1.5">
+                April 8, 2025 at 9:00 AM EDT and 2:00 PM EDT.<br>
+                <b>On-demand recording now available!</b>
+              </p>
+              <a class="btn btn-rna c-font-uppercase c-font-bold" href="/masterclass/webinars/transforming-cancer-care-cfdna-liquid-biopsy-prostate-cancer-perspective" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">View Recording</a>
+              <img src='https://drupal11.norgenbiotek.com/sites/default/files/images/home/speakers2-v2.png' alt="webinar speakers" style="margin-bottom:0px;">
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    {# Item 2 #}
+{#     <div class='carousel-item'>
+      <div class="item">
+        <section class="home-banner" id="extraclean-hero-banner">
+          <div class="container" style="height:100%;">
+            <div class="text">
+              <img src="https://drupal11.norgenbiotek.com/sites/default/files/images/extraclean-campaign/Extra_Clean_Logo.svg" alt="EXTRAClean" style="max-width:300px">
+              <h1>Purify small RNA with minimal background noise.</h1>
+              <p style="line-height:1.5">
+                <b>Buy 2</b> qualifying products, <b>get 50% off the 3rd.</b><br>
+                <b>Buy 4</b> qualifying products, <b>get the 5th free.</b>
+              </p>
+              <p class="plus" style="line-height:1.5;display: flex;align-items: center;line-height: 1.5;gap: 10px;">
+                <i class="fa fa-plus"></i>
+                <b>
+                70% off the Ultrapure Nuclease-Free Water<br>
+                with the purchase of an EXTRAClean product.
+                </b><br>
+              </p>
+              <a class="btn btn-rna c-font-uppercase c-font-bold" href="/promotions/rna-promotion" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">Order Now</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div> #}
+    {# Item 3 #}
+    <div class='carousel-item'>
+      <div class="item">
+        <section class="home-banner" id="magbead-home-banner">
+          <div class="container">
+            <div class="text">
+              <h1 class="c-font-uppercase">RNA Purification, <span>Automated</span></h1>
+              <div class="c-font-uppercase">The Power of Magnetic Beads</div>
+              <hr>
+              <p><b>Now With:</b> <a href="/product/total-rna-purification-kits?v=1931">Total RNA Purification Kit (Magnetic Bead System) Cat. 75400</a><br/>&amp; <a href="/product/total-rna-purification-kits?v=1932">Total RNA Purification 96-Well Kit (Magnetic Bead System) Cat. 75500</a></p>
+              <a class="btn btn-primary c-font-uppercase c-font-bold" href="/product/total-rna-purification-kits?v=1931" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">Order Now</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" data-bs-target="#homeBannerCarousel" role="button" data-bs-slide="prev">
+    <span class="fa fa-2x fa-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  <a class="carousel-control-next" data-bs-target="#homeBannerCarousel" role="button" data-bs-slide="next">
+    <span class="fa fa-2x fa-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  <ol class="carousel-indicators">
+    <li data-bs-target="#homeBannerCarousel" data-bs-slide-to='0' class="active" for="ezcollect-banner">
+      <div class="info"><span class="text">EZCollect Saliva Devices</span></div>
+    </li>
+    <li data-bs-target="#homeBannerCarousel" data-bs-slide-to='1' class="animate" for="proudly-canadian-banner">
+      <div class="info"><span class="text">Proudly Canadian</span></div>
+    </li>
+    <li data-bs-target="#homeBannerCarousel" data-bs-slide-to='2' class="animate" for="liquid-biopsy-webinar-hero-banner">
+      <div class="webinar"><span class="text">Webinar with Live Q&amp;A</span></div>
+    </li>
+    <li data-bs-target="#homeBannerCarousel" data-bs-slide-to='3' class="animate" for="magbead-home-banner">
+      <div class="info"><span class="text">New Magnetic Bead Kits</span></div>
+    </li>
+  </ol>
+</div>
+
+{% else %}
+
+<div id="homeBannerCarousel" class="carousel slide carousel-fade1 dexp_carousel" data-ride="carousel" data-interval="10000" data-pause-"false">
+  <div class="carousel-inner prodBottom">
+  <!-- Carousel items -->
+    {# <div class='carousel-item active'>
+      <div class="item">
+        <section class="home-banner" id="liquid-biopsy-promo-banner">
+          <div class="container" style="height:100%;">
+            <div class="text">
+              <h1 style="color:white;">Liquid Biopsy: The Future of Non-Invasive Cancer Research</h1>
+              <p style="line-height:1.5">
+                Spend over $1000 on <b>plasma/serum</b>, <b>urine</b>, or <b>saliva</b> products and get <b>FREE SHIPPING</b>!<br>
+              </p>
+              <a class="btn btn-rna c-font-uppercase c-font-bold" href="/liquidbiopsy" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">Order Now</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div> #}
+    {# EZCollect #}
+    <div class='carousel-item active'>
+      <div class="item">
+        <section class="home-banner" id="ezcollect-banner">
+          <video autoplay muted loop style="object-fit:cover;width:100%;height:100%;">
+            <source src="https://drupal11.norgenbiotek.com/sites/default/files/images/home/2025-05-30-EZCollect/ezcollect-bg-banner-sm.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="container" style="height:100%;">
+            <div class="text">
+              <div style="width:100%;"><span class="new-tag">NEW!</span><img class="logo" src="https://drupal11.norgenbiotek.com/sites/default/files/images/home/2025-05-30-EZCollect/ezcollect-logo.svg"></div>
+              <h1>User Friendly, All in One Saliva Collection &amp; Preservation Devices</h1>
+              <div>
+                <a class="btn btn-rna c-font-uppercase c-font-bold" href="/product/ezcollect-saliva-rna-device" style="box-shadow: rgba(255, 255, 255, 0.25) 0px 6px 12px -2px, rgba(255, 255, 255, 0.3) 0px 3px 7px -3px;">RNA</a>
+                <a class="btn btn-rna c-font-uppercase c-font-bold" href="/product/ezcollect-saliva-dna-device" style="box-shadow: rgba(255, 255, 255, 0.25) 0px 6px 12px -2px, rgba(255, 255, 255, 0.3) 0px 3px 7px -3px;background-color:#134b96;">DNA</a>
+              </div>
+            </div>
+            <img class="ezcollect-devices" src="https://drupal11.norgenbiotek.com/sites/default/files/images/home/2025-05-30-EZCollect/ezcollect-devices.png">
+          </div>
+        </section>
+      </div>
+    </div>
+    <!-- Item 2 -->
+    <div class='carousel-item'>
+      <div class="item">
+        <section class="home-banner" id="liquid-biopsy-webinar-hero-banner">
+          <div class="container" style="height:100%;">
+            <div class="text">
+              <span class="webinar-round">Webinar with Live Q&amp;A</span>
+              <h1>Transforming Cancer Care with cfDNA from Liquid Biopsy: A Prostate Cancer Perspective</h1>
+              <p style="line-height:1.5">
+                April 8, 2025 at 9:00 AM EDT and 2:00 PM EDT.<br>
+                <b>On-demand recording now available!</b>
+              </p>
+              <a class="btn btn-rna c-font-uppercase c-font-bold" href="/masterclass/webinars/transforming-cancer-care-cfdna-liquid-biopsy-prostate-cancer-perspective" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">View Now</a>
+              <img src='https://drupal11.norgenbiotek.com/sites/default/files/images/home/speakers2-v2.png' alt="webinar speakers" style="margin-bottom:0px;">
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    {# Item 2 #}
+    {# <div class='carousel-item'>
+      <div class="item">
+        <section class="home-banner" id="extraclean-hero-banner">
+          <div class="container" style="height:100%;">
+            <div class="text">
+              <img src="https://drupal11.norgenbiotek.com/sites/default/files/images/extraclean-campaign/Extra_Clean_Logo.svg" alt="EXTRAClean" style="max-width:300px">
+              <h1>Purify small RNA with minimal background noise.</h1>
+              <p style="line-height:1.5">
+                <b>Buy 2</b> qualifying products, <b>get 50% off the 3rd.</b><br>
+                <b>Buy 4</b> qualifying products, <b>get the 5th free.</b>
+              </p>
+              <p class="plus" style="line-height:1.5;display: flex;align-items: center;line-height: 1.5;gap: 10px;">
+                <i class="fa fa-plus"></i>
+                <b>
+                70% off the Ultrapure Nuclease-Free Water<br>
+                with the purchase of an EXTRAClean product.
+                </b><br>
+              </p>
+              <a class="btn btn-rna c-font-uppercase c-font-bold" href="/promotions/rna-promotion" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">Order Now</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div> #}
+    {# Item 3 #}
+    <div class='carousel-item'>
+      <div class="item">
+        <section class="home-banner" id="magbead-home-banner">
+          <div class="container">
+            <div class="text">
+              <h1 class="c-font-uppercase">RNA Purification, <span>Automated</span></h1>
+              <div class="c-font-uppercase">The Power of Magnetic Beads</div>
+              <hr>
+              <p><b>Now With:</b> <a href="/product/total-rna-purification-kits?v=1931">Total RNA Purification Kit (Magnetic Bead System) Cat. 75400</a><br/>&amp; <a href="/product/total-rna-purification-kits?v=1932">Total RNA Purification 96-Well Kit (Magnetic Bead System) Cat. 75500</a></p>
+              <a class="btn btn-primary c-font-uppercase c-font-bold" href="/product/total-rna-purification-kits?v=1931" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">Order Now</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" data-bs-target="#homeBannerCarousel" role="button" data-bs-slide="prev">
+    <span class="fa fa-2x fa-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  <a class="carousel-control-next" data-bs-target="#homeBannerCarousel" role="button" data-bs-slide="next">
+      <span class="fa fa-2x fa-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+  </a>
+  <ol class="carousel-indicators">
+    <li data-bs-target="#homeBannerCarousel" data-bs-slide-to='0' class="active" for="ezcollect-banner">
+      <div class="info"><span class="text">EZCollect Saliva Devices</span></div>
+    </li>
+    <li data-bs-target="#homeBannerCarousel" data-bs-slide-to='1' class="animate" for="liquid-biopsy-webinar-hero-banner">
+      <div class="webinar"><span class="text">Webinar with Live Q&amp;A</span></div>
+    </li>
+   {#  <li data-bs-target="#homeBannerCarousel" data-bs-slide-to='2' class="animate" for="extraclean-hero-banner">
+      <div class="promo"><span class="text">Save on RNA Products</span></div>
+    </li> #}
+    <li data-bs-target="#homeBannerCarousel" data-bs-slide-to='2' class="animate" for="magbead-home-banner">
+      <div class="info"><span class="text">New Magnetic Bead Kits</span></div>
+    </li>
+  </ol>
+</div>
+
+{# <section class="home-banner" id="liquid-biopsy-webinar-hero-banner">
+  <div class="container" style="height:100%;">
+    <div class="text">
+      <span class="webinar-round">Webinar with Live Q&amp;A</span>
+      <h1>Transforming Cancer Care with cfDNA from Liquid Biopsy: A Prostate Cancer Perspective</h1>
+      <p style="line-height:1.5">
+        <b>April 8, 2025 at 9:00 AM EDT and 2:00 PM EDT.</b><br>
+      </p>
+      <a class="btn btn-rna c-font-uppercase c-font-bold" href="/masterclass/webinars/transforming-cancer-care-cfdna-liquid-biopsy-prostate-cancer-perspective" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">Register Now</a>
+      <img src='https://drupal11.norgenbiotek.com/sites/default/files/images/home/speakers2-v2.png' alt="webinar speakers" style="margin-bottom:0px;">
+    </div>
+  </div>
+</section> #}
+
+{# <section class="home-banner" id="extraclean-hero-banner">
+  <div class="container" style="height:100%;">
+    <div class="text">
+      <img src="https://drupal11.norgenbiotek.com/sites/default/files/images/extraclean-campaign/Extra_Clean_Logo.svg" alt="EXTRAClean" style="max-width:300px">
+      <h1>Purify small RNA with minimal background noise.</h1>
+      <p style="line-height:1.5">
+        <b>Buy 2</b> qualifying products, <b>get 50% off the 3rd.</b><br>
+        <b>Buy 4</b> qualifying products, <b>get the 5th free.</b>
+      </p>
+      <p class="plus" style="line-height:1.5;display: flex;align-items: center;line-height: 1.5;gap: 10px;">
+        <i class="fa fa-plus"></i>
+        <b>
+        70% off the Ultrapure Nuclease-Free Water<br>
+        with the purchase of an EXTRAClean product.
+        </b><br>
+      </p>
+      <a class="btn btn-rna c-font-uppercase c-font-bold" href="/promotions/rna-promotion" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">Order Now</a>
+    </div>
+  </div>
+</section> #}
+
+{# <section class="home-banner" id="magbead-home-banner">
+  <div class="container">
+    <div class="text">
+      <h1 class="c-font-uppercase">RNA Purification, <span>Automated</span></h1>
+      <div class="c-font-uppercase">The Power of Magnetic Beads</div>
+      <hr>
+      <p><b>Now With:</b> <a href="/product/total-rna-purification-kits?v=1931">Total RNA Purification Kit (Magnetic Bead System) Cat. 75400</a><br/>&amp; <a href="/product/total-rna-purification-kits?v=1932">Total RNA Purification 96-Well Kit (Magnetic Bead System) Cat. 75500</a></p>
+      <a class="btn btn-primary c-font-uppercase c-font-bold" href="/product/total-rna-purification-kits?v=1931" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;">Order Now</a>
+    </div>
+  </div>
+</section> #}
+
+{% endif %}
+
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
