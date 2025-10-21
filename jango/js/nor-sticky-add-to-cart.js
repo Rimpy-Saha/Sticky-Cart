@@ -47,35 +47,35 @@
 
 
 
-(function ($, Drupal) {
-  Drupal.behaviors.stickyAddToCart = {
-    attach: function (context, settings) {
-      console.log('✅ stickyAddToCart behavior attached');
-      const $mainNav = $('#nor_norproduct_doc_nav_tabs', context);
-      const $addToCart = $('#sticky-addtocart', context);
+// (function ($, Drupal) {
+//   Drupal.behaviors.stickyAddToCart = {
+//     attach: function (context, settings) {
+//       console.log('✅ stickyAddToCart behavior attached');
+//       const $mainNav = $('#nor_norproduct_doc_nav_tabs', context);
+//       const $addToCart = $('#sticky-addtocart', context);
 
-      if ($mainNav.length && !$addToCart.hasClass('sticky-initialized')) {
-        console.log('✅ Main nav and sticky bar found');
-        $addToCart.addClass('sticky-initialized');
+//       if ($mainNav.length && !$addToCart.hasClass('sticky-initialized')) {
+//         console.log('✅ Main nav and sticky bar found');
+//         $addToCart.addClass('sticky-initialized');
 
-        $(window).on('scroll.stickyAddToCart', function () {
-          const navTop = $mainNav[0].getBoundingClientRect().top;
-          console.log('scrollY:', window.scrollY, 'navTop:', navTop);
+//         $(window).on('scroll.stickyAddToCart', function () {
+//           const navTop = $mainNav[0].getBoundingClientRect().top;
+//           console.log('scrollY:', window.scrollY, 'navTop:', navTop);
 
-          if (navTop <= 230) {
-            if (!$addToCart.hasClass('active')) console.log('📌 Activating sticky bar');
-            $addToCart.addClass('active');
-          } else {
-            if ($addToCart.hasClass('active')) console.log('📴 Deactivating sticky bar');
-            $addToCart.removeClass('active');
-          }
-        });
-      } else {
-        console.warn('⚠️ stickyAddToCart: Missing mainNav or sticky bar');
-      }
-    }
-  };
-})(jQuery, Drupal);
+//           if (navTop <= 230) {
+//             if (!$addToCart.hasClass('active')) console.log('📌 Activating sticky bar');
+//             $addToCart.addClass('active');
+//           } else {
+//             if ($addToCart.hasClass('active')) console.log('📴 Deactivating sticky bar');
+//             $addToCart.removeClass('active');
+//           }
+//         });
+//       } else {
+//         console.warn('⚠️ stickyAddToCart: Missing mainNav or sticky bar');
+//       }
+//     }
+//   };
+// })(jQuery, Drupal);
 
 
 // (function ($, Drupal) {
@@ -136,7 +136,7 @@
 //       $inner.append(
 //         placeholders.title,
 //         placeholders.format,
-//         placeholders.size,
+//         placeholders.size,  
 //         placeholders.price,
 //         placeholders.qty,
 //         placeholders.btn,
@@ -179,85 +179,176 @@
 //   };
 // })(jQuery, Drupal);
 
-(function ($, Drupal) {
+// // to make the sticky add to cart bar appear when scrolling past the original add to cart form
+// (function ($, Drupal) {
+//   Drupal.behaviors.stickyProductForm = {
+//     attach: function (context, settings) {
+//       const $wrapper = $('#sticky-form-wrapper', context);
+//       if (!$wrapper.length || $wrapper.data('sticky-attached')) return;
+
+//       $wrapper.data('sticky-attached', true);
+
+//       const $window = $(window);
+//       const wrapperOffset = $wrapper.offset().top;
+
+//       $window.on('scroll.stickyProductForm', function () {
+//         const scrollTop = $window.scrollTop();
+
+//         // When the wrapper scrolls to the top of the viewport
+//         if (scrollTop >= wrapperOffset) {
+//           $wrapper.addClass('is-sticky visible');
+//         } else {
+//           $wrapper.removeClass('is-sticky visible');
+//         }
+//       });
+//     }
+//   };
+// })(jQuery, Drupal);
+
+
+// // Toggle display of format and size fieldsets
+// (function (Drupal, once) {
+//   Drupal.behaviors.norStickyToggles = {
+//     attach: function (context) {
+//       once('norStickyToggles', 'body', context).forEach(function () {
+
+//         const mediaOK = window.matchMedia('(min-width: 1024px)').matches;
+//         const stickyParent = document.querySelector('.is-sticky.visible');
+
+//         console.log('[norStickyToggles] Initializing...');
+//         console.log('[norStickyToggles] Media OK:', mediaOK);
+//         console.log('[norStickyToggles] Sticky Parent Found:', !!stickyParent);
+
+//         if (!mediaOK || !stickyParent) {
+//           console.log('[norStickyToggles] Conditions not met, skipping.');
+//           return;
+//         }
+
+//         const formatToggle = document.getElementById('nor_sticky_format');
+//         const sizeToggle = document.getElementById('nor_sticky_size');
+//         const formatFieldset = document.querySelector('[data-drupal-selector="edit-purchased-entity-0-attributes-attribute-format--wrapper"]');
+//         const sizeFieldset = document.querySelector('[data-drupal-selector="edit-purchased-entity-0-attributes-attribute-size--wrapper"]');
+
+//         console.log('[norStickyToggles] Found elements:', {
+//           formatToggle: !!formatToggle,
+//           sizeToggle: !!sizeToggle,
+//           formatFieldset: !!formatFieldset,
+//           sizeFieldset: !!sizeFieldset
+//         });
+
+//         const toggleFieldset = (target, other, label) => {
+//           if (!target) return;
+
+//           const isOpen = target.style.display === 'block';
+//           target.style.display = isOpen ? 'none' : 'block';
+//           if (other) other.style.display = 'none';
+//           console.log(`[norStickyToggles] Toggled ${label}:`, isOpen ? 'Closed' : 'Opened');
+//         };
+
+//         // Initially hide both
+//         if (formatFieldset) {
+//           formatFieldset.style.display = 'none';
+//           console.log('[norStickyToggles] Hiding format fieldset initially');
+//         }
+//         if (sizeFieldset) {
+//           sizeFieldset.style.display = 'none';
+//           console.log('[norStickyToggles] Hiding size fieldset initially');
+//         }
+
+//         // Add listeners
+//         if (formatToggle && formatFieldset) {
+//           formatToggle.addEventListener('click', () => toggleFieldset(formatFieldset, sizeFieldset, 'Format'));
+//         }
+
+//         if (sizeToggle && sizeFieldset) {
+//           sizeToggle.addEventListener('click', () => toggleFieldset(sizeFieldset, formatFieldset, 'Size'));
+//         }
+
+//         console.log('[norStickyToggles] Behavior attached successfully.');
+//       });
+//     }
+//   };
+// })(Drupal, once);
+
+
+(function ($, Drupal, once) {
   Drupal.behaviors.stickyProductForm = {
-    attach: function (context, settings) {
-      const $wrapper = $('#sticky-form-wrapper', context);
-      if (!$wrapper.length || $wrapper.data('sticky-attached')) return;
+    attach: function (context) {
+      once('stickyProductForm', 'body', context).forEach(function () {
 
-      $wrapper.data('sticky-attached', true);
+        const $wrapper = $('#sticky-form-wrapper', context);
+        if (!$wrapper.length || $wrapper.data('sticky-attached')) return;
 
-      const $window = $(window);
-      const wrapperOffset = $wrapper.offset().top;
+        $wrapper.data('sticky-attached', true);
+        const $window = $(window);
+        const wrapperOffset = $wrapper.offset().top;
 
-      $window.on('scroll.stickyProductForm', function () {
-        const scrollTop = $window.scrollTop();
+        // Elements for format/size toggles
+        const formatToggle = document.getElementById('nor_sticky_format');
+        const sizeToggle = document.getElementById('nor_sticky_size');
+        const formatFieldset = document.querySelector('[data-drupal-selector="edit-purchased-entity-0-attributes-attribute-format"]');
+        const sizeFieldset = document.querySelector('[data-drupal-selector="edit-purchased-entity-0-attributes-attribute-size"]');
 
-        // When the wrapper scrolls to the top of the viewport
-        if (scrollTop >= wrapperOffset) {
-          $wrapper.addClass('is-sticky visible');
-        } else {
-          $wrapper.removeClass('is-sticky visible');
+        console.log(sizeFieldset);
+        // Helper to toggle fieldsets
+        const toggleFieldset = (target, other, label) => {
+          if (!target) return;
+          const isOpen = target.style.display === 'block';
+          target.style.display = isOpen ? 'none' : 'block';
+          if (other) other.style.display = 'none';
+          console.log(`[norStickyToggles] ${label} ${isOpen ? 'Closed' : 'Opened'}`);
+        };
+
+        // // Hide fieldsets initially
+        // if (formatFieldset) formatFieldset.style.display = 'none';
+        // if (sizeFieldset) sizeFieldset.style.display = 'none';
+
+        // Add scroll listener for sticky bar
+        $window.on('scroll.stickyProductForm', function () {
+          const scrollTop = $window.scrollTop();
+          const mediaOK = window.matchMedia('(min-width: 1024px)').matches;
+
+          if (scrollTop >= wrapperOffset && mediaOK) {
+            if (!$wrapper.hasClass('is-sticky visible')) {
+              $wrapper.addClass('is-sticky visible');
+              console.log('[stickyProductForm] Sticky bar activated');
+              if (formatFieldset) formatFieldset.style.display = 'none';
+              if (sizeFieldset) sizeFieldset.style.display = 'none';
+            }
+          } else {
+            if ($wrapper.hasClass('is-sticky visible')) {
+              $wrapper.removeClass('is-sticky visible');
+              console.log('[stickyProductForm] Sticky bar deactivated');
+
+              // Close fieldsets when hiding sticky
+              if (formatFieldset) formatFieldset.style.display = 'block';
+              if (sizeFieldset) sizeFieldset.style.display = 'block';
+            }
+          }
+        });
+
+        // Add click listeners (they only work if sticky bar is visible)
+        const handleToggle = (fieldset, other, label) => {
+          const stickyVisible = $wrapper.hasClass('is-sticky visible');
+          const mediaOK = window.matchMedia('(min-width: 1024px)').matches;
+
+          if (stickyVisible && mediaOK) {
+            toggleFieldset(fieldset, other, label);
+          } else {
+            console.log(`[norStickyToggles] Ignored ${label} click — conditions not met`);
+          }
+        };
+
+        if (formatToggle && formatFieldset) {
+          formatToggle.addEventListener('click', () => handleToggle(formatFieldset, sizeFieldset, 'Format'));
         }
+
+        if (sizeToggle && sizeFieldset) {
+          sizeToggle.addEventListener('click', () => handleToggle(sizeFieldset, formatFieldset, 'Size'));
+        }
+
+        console.log('[stickyProductForm] Behavior attached successfully.');
       });
     }
   };
-})(jQuery, Drupal);
-
-(function ($, Drupal) {
-  Drupal.behaviors.stickyAttributeDropdowns = {
-    attach: function (context, settings) {
-      const $format = $('#nor_Sticky_format', context);
-      const $size = $('#nor_sticky_size', context);
-
-      if (!$format.length || !$size.length) return;
-
-      // Attach this behavior only once
-      $(context).find('#nor_Sticky_format, #nor_sticky_size').once('sticky-dropdown').each(function () {
-
-        // Hide both by default
-        $format.find('.attribute-options').hide();
-        $size.find('.attribute-options').hide();
-
-        // Click handler for Format
-        $format.on('click.stickyDropdown', function (e) {
-          e.stopPropagation();
-          const $options = $(this).find('.attribute-options');
-          const isVisible = $options.is(':visible');
-
-          // Close both first
-          $format.find('.attribute-options').hide();
-          $size.find('.attribute-options').hide();
-
-          // Toggle only if it was not visible
-          if (!isVisible) {
-            $options.show();
-          }
-        });
-
-        // Click handler for Size
-        $size.on('click.stickyDropdown', function (e) {
-          e.stopPropagation();
-          const $options = $(this).find('.attribute-options');
-          const isVisible = $options.is(':visible');
-
-          // Close both first
-          $format.find('.attribute-options').hide();
-          $size.find('.attribute-options').hide();
-
-          // Toggle only if it was not visible
-          if (!isVisible) {
-            $options.show();
-          }
-        });
-
-        // Click outside to close both
-        $(document).on('click.stickyDropdown', function () {
-          $format.find('.attribute-options').hide();
-          $size.find('.attribute-options').hide();
-        });
-
-      });
-    }
-  };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

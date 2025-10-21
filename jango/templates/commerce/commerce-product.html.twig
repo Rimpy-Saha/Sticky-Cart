@@ -1160,9 +1160,9 @@
                 <div class="label">SKU</div><span class="notranslate">{{product.variation_sku}}</span>
               </div>
               {# Independent element to show selected format #}
-              <div id="nor_sticky_format">Format: {% if product.variations|length > 0 %}{{ product.variations|first.label }}{% else %}None{% endif %}</div>
+              <div id="nor_sticky_format" style="cursor:pointer; background:white;">Format {% if product.variations|length > 0 %}{{ product.variations|first.label }}{% else %}None{% endif %}</div>
               {# Independent element to show selected format #}
-              <div id="nor_sticky_size">Size: {% if product.variations|length > 0 %}{{ product.variations|first.label }}{% else %}None{% endif %}</div>
+              <div id="nor_sticky_size" style="cursor:pointer; background:white;">Size {% if product.variations|length > 0 %}{{ product.variations|first.label }}{% else %}None{% endif %}</div>
 
               {{ product.variations }}
 

@@ -58,8 +58,9 @@ display: none !important;
     top: 105px; /* adjust if you have a header */
     left: 0;
     width: 100%;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: #ffffff00;
+    justify-items: anchor-center;
+    /* box-shadow: 0 2px 8px #0000001a; */
     transform: translateY(-100%);
     z-index: 99999;
     }
@@ -75,7 +76,11 @@ display: none !important;
     align-items: center;
     justify-content: space-between;
     font-size: 15px !important;
-    margin: 0 !important;
+    margin: 0 !important;    
+    background: #e5ecf4;
+    box-shadow: 0 2px 8px #0000001a;
+    padding:10px;
+    width: max-content;
     }
 
     /* Hide elements you don't want in sticky mode */
@@ -110,10 +115,20 @@ display: none !important;
     #sticky-form-wrapper.is-sticky.visible #desktop-title .c-font-uppercase.c-font-bold {
     font-size: 15px !important;
     margin-bottom: 0 !important;
+    /* color:white; */
     }
 
     /* Adjust price layout */
-    #sticky-form-wrapper.is-sticky.visible .c-product-meta > .c-product-price {
+    #sticky-form-wrapper.is-sticky.visible .c-product-meta > .c-product-price
+    {
+    font-size: 15px !important;
+    margin-bottom: 0 !important;
+    width:100px; /* Fixed width to prevent layout shift */
+    }
+
+    /* Fixing layout shift in price */
+    #sticky-form-wrapper.is-sticky.visible .c-product-meta > .c-product-price .smart-save
+    {
     font-size: 15px !important;
     margin-bottom: 0 !important;
     }
@@ -121,6 +136,10 @@ display: none !important;
     /* SKU layout adjustments */
     #sticky-form-wrapper.is-sticky.visible #nor_sticky_sku {
         display: block !important;
+    }
+    #sticky-form-wrapper.is-sticky.visible 
+    .button--add-to-cart.c-font-bold.c-font-uppercase.c-font-white.button--primary.js-form-submit.form-submit {
+    margin: 0 !important;
     }
 
     /* Attribute box layout adjustments */
@@ -153,6 +172,9 @@ display: none !important;
     z-index: 1100;
     background: #fff !important;
     width: min-content !important;
+    display: none;
+    padding:5px;
+    box-shadow: 0 2px 8px #0000001a;
     }
 
     /* Sticky mode: target Size fieldset specifically */
@@ -164,6 +186,9 @@ display: none !important;
     z-index: 1100;
     background: #fff !important;
     width: min-content !important;
+    display: none;
+    padding:5px;
+    box-shadow: 0 2px 8px #0000001a;
     }
     
     /* Hide promotion margin in sticky mode */
@@ -177,5 +202,18 @@ display: none !important;
     .form-group.js-form-item.form-item.js-form-type-number.form-item-quantity-0-value.js-form-item-quantity-0-value > label {
     display: none !important;
     }
+
+    /* fix quantity margins */
+    #sticky-form-wrapper.is-sticky.visible 
+    .form-group.js-form-item.form-item.js-form-type-number.form-item-quantity-0-value.js-form-item-quantity-0-value {
+    margin:0!important;
+    }
+
+    /* FIxing button style
+
+    #sticky-form-wrapper.is-sticky.visible .form-actions.js-form-wrapper.form-wrapper.form-container
+    .form-group {
+    background: unset !important;
+    } */
 
 }

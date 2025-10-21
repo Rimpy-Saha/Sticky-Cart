@@ -5168,3 +5168,7 @@ ol.carousel-indicators { list-style: none; }
 .carousel-indicators.dark [data-bs-target]{
   background-color:var(--norgen-primary-blue-dark);
 }
+/*The follwoing is to fix the add to cart button shift on product pages due to the product-details css rule that set it to 150px*/
+form.commerce-order-item-add-to-cart-form  input.button--add-to-cart {
+    width: auto !important;
+}
