@@ -171,50 +171,60 @@
   Drupal.behaviors.norStickyLabels = {
     attach: function (context, settings) {
 
-      // Only run once per sticky label element
       once('norStickyLabels', '#nor_sticky_format,#nor_sticky_size', context).forEach(function () {
 
-        // Utility functions to get the currently selected label
+        // Generic helper: get the label text for any attribute (format, size, etc.)
+        function getSelectedLabelText(attributeSelector) {
+          const checked = document.querySelector(`${attributeSelector} input:checked`);
+          if (!checked) return 'None';
+
+          const label = document.querySelector(`label[for="${checked.id}"] .format-row`);
+          if (!label) return 'None';
+
+          return label.textContent.trim();
+        }
+
+        // Specific helpers for format and size
         function getSelectedFormat() {
-          const formatOption = document.querySelector('[data-drupal-selector^="edit-purchased-entity-0-attributes-attribute-format"] input:checked + .format-row, .format-row.selected, .format-row.is-active');
-          return formatOption ? formatOption.textContent.trim() : 'None';
+          return getSelectedLabelText('[data-drupal-selector^="edit-purchased-entity-0-attributes-attribute-format"]');
         }
 
         function getSelectedSize() {
-          const sizeOption = document.querySelector('[data-drupal-selector^="edit-purchased-entity-0-attributes-attribute-size"] input:checked + .format-row, .format-row.selected, .format-row.is-active');
-          return sizeOption ? sizeOption.textContent.trim() : 'None';
+          return getSelectedLabelText('[data-drupal-selector^="edit-purchased-entity-0-attributes-attribute-size"]');
         }
 
-        // Update sticky label divs
+        // Sticky label divs
         const formatDiv = document.getElementById('nor_sticky_format');
         const sizeDiv = document.getElementById('nor_sticky_size');
 
+        // Update both labels
         function updateLabels() {
           if (formatDiv) formatDiv.textContent = 'Format: ' + getSelectedFormat();
           if (sizeDiv) sizeDiv.textContent = 'Size: ' + getSelectedSize();
         }
 
-        // Initial update
-        updateLabels();
+        // Initial update after DOM is ready
+        setTimeout(updateLabels, 300);
 
-        // Listen for clicks on options (lightweight, event delegation)
+        // Attribute containers
         const containerSelectors = [
           '[data-drupal-selector^="edit-purchased-entity-0-attributes-attribute-format"]',
           '[data-drupal-selector^="edit-purchased-entity-0-attributes-attribute-size"]'
         ];
 
+        // Listen for user interactions
         containerSelectors.forEach(selector => {
           const container = document.querySelector(selector);
           if (!container) return;
 
           container.addEventListener('click', function (e) {
-            const option = e.target.closest('.format-row');
+            const option = e.target.closest('label.option');
             if (!option) return;
             updateLabels();
           });
         });
 
-        // Also update after any Drupal AJAX replacement
+        // Update after AJAX reload (e.g., Commerce variation switch)
         $(document).ajaxComplete(function () {
           updateLabels();
         });
