@@ -74,6 +74,7 @@
     .commerce-order-item-add-to-cart-form .product--rendered-attribute label.option {
       width: 100%;
       height: 100%;
+      margin:0px;
     }
   
     .commerce-order-item-add-to-cart-form .attribute-widgets div.form-group.has-feedback {
@@ -85,6 +86,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-gap: 1em;
+      overflow:auto;
     }
   
     .form-group.has-feedback:has(input:checked)+label .product-row,
@@ -116,15 +118,15 @@
     /* Testimonials field */
     .quote-box {
       position: relative;
+      max-width:calc(100% - 40px);
+      margin-left:15px;
       margin-top: max(30px, 5%);
-      margin-right: 30px;
       border-radius: 24px;
       padding: 20px 27px 40px;
-      font-family: 'Ubuntu', sans-serif;
       font-size: 14px;
       height: max-content;
       transition-duration: 0.5s;
-      border: 1px solid #004897;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     }
   
     .quote-box>p {
@@ -157,7 +159,7 @@
       height: 100%;
       object-fit: contain;
       border-radius: 50%;
-      border: 5px solid #004897;
+      border: 2px solid #004897;
       background-color: #fff;
     }
   
@@ -175,16 +177,14 @@
   
     .field--name-field-commerce-product .front-featured {
       height: auto;
-      max-height: 220px;
       transition: all 0.2s ease-in-out;
       display: block;
-      height: 600px;
     }
   
     .field--name-field-commerce-product .carousel-inner-feat {
       overflow: inherit;
       overflow-x: hidden;
-      height: 250px;
+      height: 275px;
     }
   
     .field--name-field-commerce-product .carousel-inner-feat .row {
@@ -192,7 +192,7 @@
     }
   
     .field--name-field-commerce-product #CarouselTestimonials .carousel-indicators {
-      bottom: -30px;
+      bottom: 0px;
       margin-bottom: 0px;
     }
   
@@ -347,6 +347,7 @@
       left: 0%;
       bottom: 0%;
       width:100%;
+      justify-content:left;
     }
   
     .olProd .carousel-indicators li {
@@ -616,23 +617,33 @@
       position:initial;
     }
   }
-    .lyo-grid{
+  .lyo-flex{
     display: flex;
-      align-items: center;
-      background: #2E69A6;
-      width: fit-content;
-      padding: 10px 30px;
-      border-top-right-radius: 15px;
-      border-bottom-right-radius: 15px;
+    align-items: center;
+    background: #2E69A6;
+    width: fit-content;
+    padding: 10px 30px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
   }
-  .lyo-grid h2{
+    .lyo-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    align-items: center;
+    background: #2E69A6;
+    width: fit-content;
+    padding: 10px 30px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+  .lyo-grid h2, .lyo-flex h2{
     color:white;
     font-size:35px;
     margin-bottom:0px;
     margin-top:0;
     font-weight: 700;
   }
-  .lyo-grid p{
+  .lyo-grid p, .lyo-flex p{
     color:white;
     margin-bottom:0;
   }
@@ -686,7 +697,7 @@
   content: "\f004";
   font-family: "Font Awesome 5 Free";
   color: var(--norgen-primary-blue);
-  font-size:2.5rem;
+  font-size:1.5rem;
 }
 .flag-wish-list.action-flag a:after {
   font-weight: normal;
@@ -870,7 +881,8 @@
   }
   #total-rna-automation-form-overlay > .total-rna-automation-form-wrapper,
   #magbead-promo-info-overlay > .magbead-promo-info-wrapper,
-  #sample-request-form-overlay > .sample-request-form-wrapper{
+  #sample-request-form-overlay > .sample-request-form-wrapper,
+  #product-customization-form-overlay > .product-customization-form-wrapper{
     background-color:white;
     max-width:900px;
     max-height:95%;
@@ -890,7 +902,9 @@
   #magbead-promo-info-overlay > .magbead-promo-info-wrapper .disclaimer{
     font-size:12px;
   }
-
+  .automation-script-cta{
+    margin-bottom:15px;
+  }
   form.total-rna-automation-scripts .form-item-rna-mailing{
     margin-bottom:5px;
   }
@@ -940,7 +954,272 @@
     grid-column: 1 / 3;
   }
   /* End Gated Automation Scripts */
-  </style>
+
+  /* Product Customization Styling*/
+  #product-customization-form-overlay{
+    display:none;
+    width:100%;
+    height:100vh;
+    left:0;
+    top:0;
+    position:fixed;
+    background-color:rgba(0,0,0,0.5);
+    z-index:999999;
+  }
+  #product-customization-form-overlay.active{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #product-customization-form-overlay > .product-customization-form-wrapper{
+    width:930px;
+    max-width:100%;
+  }
+
+  fieldset.customization-form-grid > .fieldset-wrapper{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap:20px;
+  }
+  .product-customization-form .form-group > .form-group{
+    margin-bottom:0px;
+  }
+  fieldset.customization-form-grid > .fieldset-wrapper > div:last-child,
+  fieldset.customization-form-grid > .fieldset-wrapper > div:nth-last-child(2){
+    grid-column: 1 / 3;
+  }
+
+  @media only screen and (max-width:600px){
+    fieldset.customization-form-grid > .fieldset-wrapper{
+      grid-template-columns: 1fr;
+    }
+    fieldset.customization-form-grid > .fieldset-wrapper > div:last-child,
+    fieldset.customization-form-grid > .fieldset-wrapper > div:nth-last-child(2){
+      grid-column: 1 / 2;
+    }
+  }
+
+  .testimonial-card {
+    position: relative;
+    max-width: 95%;
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    font-size: 15px;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom:15px;
+  }
+
+  .testimonial-text p {
+    margin: 0;
+  }
+
+  .testimonial-text a {
+    color: #3366cc;
+    text-decoration: underline;
+  }
+
+  .testimonial-avatar {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  /* End of Product Customization Styling*/
+
+  .ce-pos{
+    margin-bottom: 15px;
+  }
+
+/* End of Product Customization Styling*/
+{% if ngs_popup %}
+/* NGS Popup */
+#ngs-popup{
+  position: fixed;
+  visibility:visible;
+  opacity:100%;
+  right: -1px;
+  top: 0px;
+  bottom: 0px;
+  margin: auto;
+  height: fit-content;
+  border-radius: 20px 0px 0px 20px;
+  max-width: 360px;
+  padding: 20px;
+  background-image: linear-gradient(#ffffffd1, #fffffffa), url(/sites/default/files/images/Asset%204.png), linear-gradient(white, white);
+  background-position: center;
+  box-shadow: 0px 0px 10px 0px #f0f0f0;
+  border: 1px solid var(--norgen-primary-blue);
+  z-index:50;
+  transition: opacity 0.5s, right 0.5s, visibility 0s 0s;
+}
+#ngs-popup.closed{
+  visibility:hidden;
+  opacity:0%;
+  right:-361px;
+  transition: opacity 0.5s, right 0.5s, visibility 0s 0.5s;
+}
+
+#ngs-popup .title{
+  margin-top:-10px;
+}
+#ngs-popup .flex{
+  display: grid;
+  grid-template-columns:1fr 1fr;
+  width: 100%;
+  grid-row-gap: 20px;
+  margin-bottom:15px;
+}
+#ngs-popup .flex > a{
+  flex-grow: 1;
+  flex-basis: 0;
+}
+#ngs-popup .flex > a > div{
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 0;
+}
+#ngs-popup .flex img{
+  width:50px;
+}
+#ngs-popup .flex > a > div > div.center{
+  font-size:16px;
+}
+/* End of NGS Popup */
+{% endif %}
+
+.product-page-content .c-shop-product-tab-1 .nav{
+  width: fit-content;
+  margin: auto;
+  padding: 0px 0px;
+}
+@media (min-width: 768px) {
+  .product-page-content .nav-justified > li, .nav-tabs.nav-justified > li{
+    display:inline-block;
+    width:auto;
+  }
+}
+
+/* Kostia's Custom Styling for New Stool Product Page Design */
+.table-container {
+  margin-bottom: 100px;
+}
+.responsive-table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  margin: 20px 0; 
+  font-size: 18px; 
+  text-align: left; 
+} 
+.responsive-table th, 
+.responsive-table td { 
+  padding: 12px 15px; 
+  border: 1px solid #ddd; 
+} 
+.responsive-table th { 
+  background-color: #E5ECF4; 
+} 
+.cat-number a { 
+  color: #004897; 
+  text-decoration: none; 
+} 
+.cat-number a:hover { 
+  text-decoration: underline; 
+}
+.table > tbody > tr:nth-of-type(odd) {
+  background-color: #fbfcfd;
+}
+/* body { 
+  margin: 0; 
+  padding: 0; 
+}  */
+.container1 {
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: space-between; 
+  align-items: flex-start; 
+  margin-bottom: 20px; 
+} 
+.column { 
+  flex-basis: 48%; 
+  padding: 10px; 
+  box-sizing: border-box; 
+} 
+.title { 
+  font-weight: bold; 
+  margin-bottom: 20px; 
+} 
+/* img { 
+max-width: 100%; 
+height: auto; 
+margin-bottom: 10px; 
+}  */
+.icon { 
+  width: 64px; 
+  height: 64px; 
+  display: block; 
+  text-align: center; 
+  margin-bottom: 10px; 
+}
+.imgs { 
+  max-width: 100%; 
+} 
+.key-benefit-container1 { 
+  background-color: #EBF0F7; 
+  padding: 40px 40px; 
+  border-radius: 5px; 
+  margin-top: 5%; 
+  margin-bottom: 5%; 
+  position: relative; 
+  overflow: hidden; 
+} 
+.key-benefit-container1 p {
+  line-height: 1.3;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.full-width { 
+  width: 100%; 
+} 
+.bounceInLeft {
+  animation-name: bounceInLeft;
+}
+.key-benefit-container1 ol {
+  font-size: 22px; 
+  color: #5c6873; 
+}
+.key-benefit-container1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/themes/custom/jango/img/stool_basket_img.png'); 
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3; 
+  z-index: 0; 
+}
+@media screen and (max-width: 565px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+/* END Kostia's Custom Styling for New Stool Product Page Design */
+</style>
   
   {# Check if FAQs exist for any of the variations #}
   {% set faq_exists = false %}
@@ -978,6 +1257,15 @@
     </div>
     {% endif %}
 
+    {% if product_customization %}
+    <div id="product-customization-form-overlay" class="fixed">
+      <div class="product-customization-form-wrapper">
+        <button onclick="toggleProductCustomizationForm()" style="float:right;background:none;border:none;font-size:40px;line-height:1;position:absolute;top:0;right:0;">×</button>
+        {{ product_customization }}
+      </div>
+    </div>
+    {% endif %}
+
     <div>
       <div class="c-shop-product-details-2">
         <div class="row">
@@ -999,13 +1287,9 @@
               {{ product.variation_field_product_image }}
             </div>
   
-            {#
-            <hr style="width:calc(100% - 30px);margin:auto;margin-top:30px;">
-            {{ node.field_testimonial.0.value|raw }} #}
   
-            <hr style="width:calc(100% - 30px);margin:auto;margin-top:30px;">
             <div class="product-uses-wrapper">
-              <hr class="mobile" style="margin-top:3em;">
+                <hr class="mobile" style="margin-top:3em;">
               {% for product_use in node.norproduct_use %}
                 {{product_use.value|raw}}
               {% endfor %}
@@ -1016,19 +1300,31 @@
               <div class="ce-pos">
                 {% if node.field_health_canada_approved.0.value == 1 %}
                 <div>
-                  <img src="/sites/default/files/norproduct/Maple_Leaf.svg" style="height:36px;max-width:none;"
+                    <img src="https://norgenbiotek.com/sites/default/files/norproduct/Maple_Leaf.svg" style="height:36px;max-width:none;"
                     alt="red maple leaf" title="Health Canada Approved">
                 </div>
                 {% endif %}
                 {% if node.field_ce_marked_image.0.value == 1 %}
                 <div>
-                  <img src="/sites/default/files/norproduct/European_Conformity_logo.svg"
+                    <img src="https://norgenbiotek.com/sites/default/files/norproduct/European_Conformity_logo.svg"
                     style="height:36px;max-width:none;" alt="CE logo" title="CE Marked Product">
                 </div>
                 {% endif %}
               </div>
               {% endif %}
-              {{ product.variation_field_show_automation_scripts }}
+
+              {% if product_customization %}
+                <button onclick ="toggleProductCustomizationForm()" class = "btn btn-primary c-font-uppercase c-font-bold" style = "border: 1px solid var(--norgen-primary-blue);background-color: white;color: var(--norgen-primary-blue);margin-bottom:10px;"><i class="fa fa-cogs"></i>Customize Product</button>
+              {% endif %}
+
+              {% if node.field_testimonial.0.value != null %}
+              <div class="desktop">
+                <hr style="width:calc(100% - 30px);margin:auto;margin-top:30px;">
+                {{ node.field_testimonial.0.value|raw }}
+              </div>
+              {% endif %}
+
+              {# {{ product.variation_field_show_automation_scripts }} #}
             </div>
             {# <div class="bioz">
               {{ bioz_badge_html|raw }}
@@ -1047,13 +1343,14 @@
             {% endif %}
             {% if node.field_lyophilized_versionlink.0.value != null %}
               <a href={{node.field_lyophilized_versionlink.0.value|raw}} style="color:white;">
-                <div class="lyo-grid">
+                <div class="lyo-flex">
                   <div class="side1">
                     <h2>Lyophilized</h2>
                     <p>Version Available Here</p>
                   </div>
                   <div class="side2">
-                    <p>Save on Shipping</p>
+                    {# <p>Save on Shipping</p> #}
+                    <p>Same performance, reduced price</p>
                   </div>
                 </div>
               </a>
@@ -1067,7 +1364,7 @@
                 {% if node.field_extraclean_boolean.0.value == '1' %}
                   <div style="display:flex;align-items: center;background: #8E1F1F;width: fit-content;padding:15px 20px;border-top-right-radius: 40px;border-bottom-right-radius: 40px;gap:20px;margin-bottom:20px;">
                     <div style="border-right: 5px solid white;padding: 0px 20px 0px 0px;">
-                      <img src="/sites/default/files/images/extraclean-campaign/Extra Clean_Logo_Colour_White.png" style="z-index:-1;width:410px;">
+                      <img src="https://norgenbiotek.com/sites/default/files/images/extraclean-campaign/Extra Clean_Logo_Colour_White.png" style="z-index:-1;width:410px;">
                       <h2 style="color:white;font-size:20px;margin-top:0;margin-bottom:0;">Best & First In Class!</h2>
                     </div>
                     <div>
@@ -1079,7 +1376,8 @@
                   <div class="lyo-grid">
                       <div class="side1">
                         <h2>Lyophilized</h2>
-                        <p>Save on Shipping</p>
+                        {# <p>Save on Shipping</p> #}
+                        <p>Same performance, reduced price</p>
                       </div>
                       <div class="side2">
                         <p>Taqman PCR Detection Kits</p>
@@ -1122,7 +1420,7 @@
                 </button>
                 {% endif %}
               {% endif %}
-              
+
               {% if '/product/' in url %}
               <div class="c-product-price">
                 {# <script>
@@ -1157,13 +1455,14 @@
               {% endif %}
   
               <div class="product_variation_sku_wrapper">
-                <div class="label">SKU</div><span class="notranslate">{{product.variation_sku}}</span>
+                <div class="d-inline c-font-bold">SKU</div><span class="notranslate">{{product.variation_sku}}</span>
               </div>
               {# Independent element to show selected format #}
-              <div id="nor_sticky_format" style="cursor:pointer; background:white;">Format {% if product.variations|length > 0 %}{{ product.variations|first.label }}{% else %}None{% endif %}</div>
+              <div id="nor_sticky_format" style="display:none; cursor:pointer; background:white;">Format</div>
               {# Independent element to show selected format #}
-              <div id="nor_sticky_size" style="cursor:pointer; background:white;">Size {% if product.variations|length > 0 %}{{ product.variations|first.label }}{% else %}None{% endif %}</div>
+              <div id="nor_sticky_size" style="display:none; cursor:pointer; background:white;">Size</div>
 
+              
               {{ product.variations }}
 
               {% if logged_in == false %}
@@ -1323,7 +1622,7 @@
             {% if faq_exists %}
             <li class="nav_item" id="faqs-nav"><a href="#faqs">{{ 'FAQs'|t }}</a></li>
             {% endif %}
-            {% if node.field_citations|length > 0 %}
+            {% if drupal_view_result('publications_or_citations', 'block_1', product_entity.id) is not empty or node.field_citations|length > 0 %}
             <li class="nav_item" id="citations-nav"><a href="#citations">{{ 'Citations'|t }}</a></li>
             {% endif %}
            {#  {% if node_international.field_citations_fr|length > 0 and '/fr/' in url %}
@@ -1336,7 +1635,7 @@
             <li class="nav_item" id="citations-nav"><a href="#citations">{{ '引文'|t }}</a></li>
             {% endif %} #}
             {# <li class="nav_item ">
-              <a href="#documentation" class="review-toggler" id="reviews" data-bs-toggle="tab">{{ 'Reviews'|t }}</a>
+              <a href="#documentation" class="review-toggler" id="reviews" data-toggle="tab">{{ 'Reviews'|t }}</a>
             </li> #}
           </ul>
 
@@ -1427,8 +1726,8 @@
                 {% if node.norproduct_image|length > 0 %}
                 <h3 class="body-heading">Supporting Data</h3>
                 <div class="figures-carousel mb-40">
-                  <div id="norproduct-image-description-carousel" class="carousel slide norproduct" data-ride="carousel"
-                    data-wrap="false" data-interval="false">
+                  <div id="norproduct-image-description-carousel" class="carousel slide norproduct"
+                    data-bs-wrap="false" data-bs-interval="false">
                     <div id="carousel-slide-number"></div>
                     <button id="close-expanded-carousel" tab-index=0 class="fa fa-times"></button>
                     <a class="carousel-control-prev" href="#norproduct-image-description-carousel" role="button"
@@ -2114,62 +2413,21 @@
               {% endif %}
   
               <!-- Product Page Citations -->
+              {% if drupal_view_result('publications_or_citations', 'block_1', product_entity.id) is not empty or node.field_citations|length > 0 %}
               <a id="citations" class="anchor-link"></a>
               <section id="citations-section" class="menu-section">
-                {% if '/product/' in url %}
-                  {# {% if default_variation == '17200' or default_variation == '21000' or default_variation == '46800' or default_variation == '48300' or default_variation == '51800' or default_variaion == '23600'or default_variation == '27600' or default_variation == '58100' or default_variation == '58000' or default_variation == '35300' or default_variation == '48800' or default_variation == '55000' or default_variation == '26800' or default_variation == '47200' or default_variation == '45660' or default_variation == '58200' or default_variation == '59800' or default_variation == '49500' or default_variation == '48500' or default_variation == '55100' or default_variation == '49000' or default_variation == '59100' or default_variation == '50600' or default_variation == '18113' or default_variation == '63700' or default_variation == 'RU49000' or default_variation == 'Dx24300' or default_variation == '63950' or default_variation == '56600' or default_variation == '29600' or default_variation == '61900' or default_variation == 'RU53800' or default_variation == '45670-B' or default_variation == '45690-B' or default_variation == '53800' or default_variation == '68000' or default_variation == '69200' or default_variation == '60700' or default_variation == '58400' or default_variation == '65300' or default_variation == '58300' or default_variation == '65400' or default_variation == 'Dx27600' or default_variation == '59500' or default_variation == 'TM38750' or default_variation == 'Dx63950' or default_variation == 'Dx42550' or default_variation == 'TM42550' or default_variation == 'Dx55100' %}
-                  <!--DX69100, 59200, tm30450, tm30650, tm32250, 59200, 69100 was in bioz but didnt have citations so removed it from if statement for now-->
-                  <h2 class="c-font-uppercase c-font-bold">Citations</h2>
-                  <div class="bioz">
-                    {% set bioz = 'true' %}
-                    {{ bioz_citations_html|raw }}                  
-                  </div>
-                  {% else %} #}
+                <h2 class="c-font-uppercase c-font-bold">Citations</h2>
+                {% if drupal_view_result('publications_or_citations', 'block_1', product_entity.id) is not empty %}
                   {% set view_result = drupal_view('publications_or_citations', 'block_1', product_entity.id) %}
-                  {% set view_output = render_var(drupal_view('publications_or_citations', 'block_1', product_entity.id)) %} 
-                  {% if view_output|striptags|trim is not empty %}
-                    <h2 class="c-font-uppercase c-font-bold">Citations</h2>
-                    <div class="">
-                      {{ view_result }}
-                    </div>
-               
-                  {% else %}
-                    {% if node.field_citations|length > 0  %}
-                      {% set no_bioz = 'false' %}
-                      <h2 class="c-font-uppercase c-font-bold">Citations</h2>
-                      <div class="citation-list">{{ node.field_citations.0.value|raw }}</div>
-                    {% endif %}
-                  {% endif %}
-                  {# {% endif %} #}
-                {# {% elseif '/fr' in url %}
-                  <div class="bioz">
-                    {% if node_international.field_citations_fr|length > 0  %}
-                      {% set no_bioz = 'false' %}
-                      <h2 class="c-font-uppercase c-font-bold">Citations</h2>
-                      <div>{{ node_international.field_citations_fr.0.value|raw }}</div>
-                    {% endif %}                  
+                  <div class="">
+                    {{ view_result }}
                   </div>
-                
-                {% elseif '/es' in url %}
-                  <div class="bioz">
-                    {% if node_international.field_citations_fr|length > 0  %}
-                      {% set no_bioz = 'false' %}
-                      <h2 class="c-font-uppercase c-font-bold">Citas</h2>
-                      <div>{{ node_international.field_citations_fr.0.value|raw }}</div>
-                    {% endif %}                  
-                  </div>
-
-                {% elseif '/es' not in url and '/fr' not in url %}
-                <!--chinese-->
-                  <div class="bioz">
-                    {% if node_international.field_citations_fr|length > 0  %}
-                      {% set no_bioz = 'false' %}
-                      <h2 class="c-font-uppercase c-font-bold">引文</h2>
-                      <div>{{ node_international.field_citations_fr.0.value|raw }}</div>
-                    {% endif %}                  
-                  </div> #}
+                {% elseif node.field_citations|length > 0 %}
+                  {% set no_bioz = 'false' %}
+                  <div class="citation-list">{{ node.field_citations.0.value|raw }}</div>
                 {% endif %}
               </section>
+              {% endif %}
   
               <!-- Product Related Services -->
               {% if node.field_related_services|length > 0 %}
@@ -2190,7 +2448,7 @@
                     </div>
                   </div>
                   {% elseif item.entity.name.value == 'plant' %}
-                  <img src="/sites/default/files/images/services-btn-ngs.png" alt="NGS Service">
+                  <img src="https://norgenbiotek.com/sites/default/files/images/services-btn-ngs.png" alt="NGS Service">
                   {% elseif item.entity.name.value == 'rna' %}
                   <div class="reffect col-md-4 col-sm-12">
                     <div class="rinfo">
@@ -2263,7 +2521,73 @@
       </div>
     </div>
   
-  
+    {# NGS promo popup #}
+    {% if ngs_popup %}
+      <script>
+      
+        function closeNGSPopup(){
+          const popup = document.querySelector('#ngs-popup');
+          if(popup){
+            popup.classList.add('closed');
+            // user consented to cookies but the cookie doesn't exist
+            if(Drupal.eu_cookie_compliance.hasAgreed() && document.cookie.indexOf('hideNGSpopup=')==-1){
+              document.cookie = "hideNGSpopup=true;max-age=" + 60 * 60 * 24 * 2; // set cookie - expires in 2 days
+            }
+          }
+        }
+        document.addEventListener('DOMContentLoaded', function(){
+          const popup = document.querySelector('#ngs-popup');
+          if(popup){
+            setTimeout(() => { 
+              if(Drupal.eu_cookie_compliance.hasAgreed()){ // user has consented to cookies
+                if(document.cookie.indexOf('hideNGSpopup=')==-1){ // cookie to hide popup doesn't exist
+                  console.log(document.cookie);
+                  popup.classList.remove('closed'); // show popup
+                }
+              }
+              else{
+                popup.classList.remove('closed'); // no cookies, show popup every time
+              }
+            }, 2000);
+          }
+        });
+        
+      </script>
+      <div id="ngs-popup" class="center closed">
+        <button onclick="closeNGSPopup()" style="float:right;background:none;border:none;font-size:40px;line-height:1;position:absolute;top:0;right:0;">×</button>
+        <h2 class="title center"><strong>NGS Services</strong></h2>
+        <div class="flex">
+          <a href="/services/small-rna-sequencing">
+            <div>
+              <img class="service-img" src="/sites/default/files/images/icons/Small%20RNA_Blue.svg" alt="icon" data-nopreview="true" data-ignore-preview="true">
+              <div class="center">Small RNA</div>
+            </div>
+          </a>
+          <a href="/services/rna-sequencing">
+            <div>
+              <img class="service-img" src="/sites/default/files/images/icons/RNA%20SEQ_Red.svg" alt="icon" data-nopreview="true" data-ignore-preview="true">
+              <div class="center">RNA</div>
+            </div>
+          </a>
+          <a href="/services/phage-whole-genome-sequencing-services">
+            <div>
+              <img class="service-img" src="/sites/default/files/images/icons/phage-whole-genome-ngs.svg" alt="icon" data-nopreview="true" data-ignore-preview="true">
+              <div class="center">Phage</div>
+            </div>
+          </a>
+          <a href="/services/ngs-16s-rrna-microbiome-sequencing">
+            <div>
+              <img class="service-img" src="/sites/default/files/images/icons/Metagenomics.svg" alt="icon" data-nopreview="true" data-ignore-preview="true">
+              <div class="center">Metagenomics</div>
+            </div>
+          </a>
+        </div>
+        <p><b>Free trials available</b> for Small RNA and RNA sequencing projects!</p>
+        <a href="/content/service-consultation-request?utm_source=next-generation-sequencing&amp;utm_medium=internal_link&amp;utm_campaign=service_inquiry" class="btn btn-primary" style="margin-right:5px;">Book Consultation</a>
+        <a href="/services/next-generation-sequencing?utm_source=ngs-popup&amp;utm_medium=internal_link" class="">Learn More</a>
+      </div>
+    {% endif %}
+    {# End NGS promo popup #}
 
     {% if default_variation == 75500 or default_variation == 25720 %}
     
@@ -2275,7 +2599,7 @@
         <p class="center">Bundle a Total RNA Magnetic Bead Purification Kit with DNase and receive the DNase for a special low price!</p>
         <div class="img-and-prices">
           <div class="product">
-            <img src="/sites/default/files/styles/norproduct_imagekit/public/images/product_images/75400-1.jpg">
+            <img src="https://norgenbiotek.com/sites/default/files/styles/norproduct_imagekit/public/images/product_images/75400-1.jpg">
             <div><a href="/product/total-rna-purification-kits?v=1656">Total RNA Purification Kit (Magnetic Bead System) - 50 Reactions</a></div>
             {% if not restricted_country %}
               <div class="prices">
@@ -2286,7 +2610,7 @@
           </div>
           <div><i class="fa fa-plus"></i></div>
           <div class="product">
-            <img src="/sites/default/files/styles/norproduct_imagekit/public/25710.png">
+            <img src="https://norgenbiotek.com/sites/default/files/styles/norproduct_imagekit/public/25710.png">
             <div>
               <div><a href="/product/rnase-free-dnase-i-kit?v=79">RNase-Free DNase I Kit - 50 Reactions</a></div>
               {% if not restricted_country %}
@@ -2304,7 +2628,7 @@
         <hr>
         <div class="img-and-prices">
           <div class="product">
-            <img src="/sites/default/files/styles/norproduct_imagekit/public/images/product_images/75500-box.png">
+            <img src="https://norgenbiotek.com/sites/default/files/styles/norproduct_imagekit/public/images/product_images/75500-box.png">
             <div><a href="/product/total-rna-purification-kits?v=1657">Total RNA Purification 96-Well Kit (Magnetic Bead System) - 200 Preps</a></div>
             {% if not restricted_country %}
               <div class="prices">
@@ -2315,7 +2639,7 @@
           </div>
           <div><i class="fa fa-plus"></i></div>
           <div class="product">
-            <img src="/sites/default/files/styles/norproduct_imagekit/public/25710.png">
+            <img src="https://norgenbiotek.com/sites/default/files/styles/norproduct_imagekit/public/25710.png">
             <div>
               <div><a href="/product/rnase-free-dnase-i-kit?v=493">RNase-Free DNase I Kit - 200 Reactions</a></div>
               {% if not restricted_country %}
@@ -2396,6 +2720,27 @@
     </script>
     {% endif %}
     {# End Sample Request #}
+
+    {# Product Customization Request #}
+    {% if product_customization %}
+    <script>
+      function toggleProductCustomizationForm(){
+        let customization_form_wrapper = document.getElementById('product-customization-form-overlay');
+        document.documentElement.classList.toggle('scroll-lock');
+        if(customization_form_wrapper) customization_form_wrapper.classList.toggle('active');
+      }
+
+      let customization_form_wrapper = document.getElementById('product-customization-form-overlay');
+      if(customization_form_wrapper){
+        customization_form_wrapper.addEventListener('click', function(e){
+          if(e.target === this){
+            toggleProductCustomizationForm();
+          }
+        });
+      }
+    </script>
+    {% endif %}
+    {# Product Customization Request #}
     
     {% if total_rna_automation_scripts %}
     <script>
