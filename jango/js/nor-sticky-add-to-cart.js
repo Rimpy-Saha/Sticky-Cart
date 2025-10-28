@@ -89,7 +89,7 @@
         const formatToggle = document.getElementById('nor_sticky_format');
         const sizeToggle = document.getElementById('nor_sticky_size');
 
-        const toggleFieldset = (targetFieldset, otherFieldset, label) => {
+        const toggleFieldset = (targetFieldset, otherFieldset, target_sticky_field) => {
           if (!targetFieldset) return;
           const wasOpen = targetFieldset.classList.contains('open');
 
@@ -97,15 +97,34 @@
             otherFieldset.classList.remove('open');
           }
 
-          if (wasOpen) {
+          if (wasOpen) 
+          {
             targetFieldset.classList.remove('open');
-          } else {
+          } 
+          else 
+          {
             targetFieldset.classList.add('open');
+            var target_sticky_field_element = sizeToggle;
+            if (target_sticky_field == 1) 
+            {
+              target_sticky_field_element = formatToggle;
+            } 
+            const stickyRect = target_sticky_field_element.getBoundingClientRect();
+            targetFieldset.style.left = `${stickyRect.left}px`;
           }
         };
 
         $window.on('resize.stickyProductForm', function () {
           wrapperOffset = $wrapper.offset().top;
+
+          // Update left positions if sticky and fieldsets are open
+          if ($wrapper.hasClass('is-sticky visible')) {
+            const f = getFormatFieldset();
+            const s = getSizeFieldset();
+            const stickyRect = $wrapper[0].getBoundingClientRect();
+            if (f && f.classList.contains('open')) f.style.left = `${stickyRect.left}px`;
+            if (s && s.classList.contains('open')) s.style.left = `${stickyRect.left}px`;
+          }
         });
 
         $window.on('scroll.stickyProductForm', function () {
@@ -136,7 +155,7 @@
             const stickyVisible = $wrapper.hasClass('is-sticky visible');
             const mediaOK = window.matchMedia('(min-width: 1024px)').matches;
             if (stickyVisible && mediaOK) {
-              toggleFieldset(getFormatFieldset(), getSizeFieldset(), 'Format');
+              toggleFieldset(getFormatFieldset(), getSizeFieldset(),1);
             } 
           });
         }
@@ -146,7 +165,7 @@
             const stickyVisible = $wrapper.hasClass('is-sticky visible');
             const mediaOK = window.matchMedia('(min-width: 1024px)').matches;
             if (stickyVisible && mediaOK) {
-              toggleFieldset(getSizeFieldset(), getFormatFieldset(), 'Size');
+              toggleFieldset(getSizeFieldset(), getFormatFieldset(),2);
             } 
           });
         }
@@ -165,39 +184,3 @@
     }
   };
 })(jQuery, Drupal, once);
-(function (Drupal, once) {
-  Drupal.behaviors.norStickyDynamicPosition = {
-    attach: function (context, settings) {
-      once('norStickyDynamicPosition', '#sticky-form-wrapper', context).forEach(function () {
-
-        function positionFieldsetBelow(stickyId, fieldsetSelector) {
-          const stickyEl = document.getElementById(stickyId);
-          const fieldset = document.querySelector(fieldsetSelector);
-          if (!stickyEl || !fieldset) return;
-
-          const rect = stickyEl.getBoundingClientRect();
-
-          fieldset.style.position = 'absolute';
-          fieldset.style.left = `${rect.left}px`;
-          console.log( `${rect.left}px`);
-          fieldset.style.zIndex = 1100;
-        }
-
-        function updatePositions() {
-          positionFieldsetBelow(
-            'nor_sticky_format',
-            '#sticky-form-wrapper.is-sticky.visible fieldset[id*="attribute-format"]'
-          );
-          positionFieldsetBelow(
-            'nor_sticky_size',
-            '#sticky-form-wrapper.is-sticky.visible fieldset[id*="attribute-size"]'
-          );
-        }
-
-        updatePositions();
-
-        window.addEventListener('resize', updatePositions);
-      });
-    }
-  };
-})(Drupal, once);

@@ -120,6 +120,7 @@ display: none !important;
 
     #sticky-form-wrapper.is-sticky.visible 
     .form-actions .btn-medium {
+        -webkit-transition: none!important;
         margin-top: 0 !important;
         margin-right: 0 !important;
     }
