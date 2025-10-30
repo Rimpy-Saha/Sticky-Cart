@@ -2,60 +2,50 @@
 
 /* Hide the new sticky SKU by default */
 #nor_sticky_sku {
-display: none !important;
+    display: none !important;
 }
 
 /* Only apply sticky behavior on desktops */
 @media (min-width: 1024px) {
 
     #sticky-form-wrapper {
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    z-index: 10;
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        z-index: 10;
     }
 
     #sticky-form-wrapper.is-sticky {
-    position: fixed;
-    top: 105px; /* adjust if you have a header */
-    left: 0;
-    width: 100%;
-    background: #ffffff00;
-    justify-items: anchor-center;
-    /* box-shadow: 0 2px 8px #0000001a; */
-    transform: translateY(-100%);
-    z-index: 99999;
+        position: fixed;
+        top: 105px; /* adjust if you have a header */
+        left: 0;
+        width: 100%;
+        background: #ffffff00;
+        justify-items: anchor-center;
+        /* box-shadow: 0 2px 8px #0000001a; */
+        transform: translateY(-100%);
+        z-index: 99999;
     }
 
     #sticky-form-wrapper.is-sticky.visible {
-    transform: translateY(0);
+        transform: translateY(0);
     }
 
 
-    /* When sticky mode is active */
-    /* #sticky-form-wrapper.is-sticky.visible .c-product-meta {
-    display: flex !important;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 15px !important;
-    margin: 0 !important;    
-    background: #e5ecf4;
-    box-shadow: 0 2px 8px #0000001a;
-    padding:10px;
-    width: max-content;
-    } */
-
-        #sticky-form-wrapper.is-sticky.visible .c-product-meta {
+    #sticky-form-wrapper.is-sticky.visible .c-product-meta {
         display: grid;
         grid-auto-flow: column;
         font-size: 15px !important;
         margin: 0 !important;
-        background: #e5ecf4;
-        box-shadow: 0 2px 8px #0000001a;
+        background: #e5ecf4;        
+        /* border: 1px solid #004897; */
+        border-radius: 10px;
+        box-shadow: 0 1px 8px #00234996;
         padding: 10px;
         width: 60%;
         justify-content: space-between;
         align-items: center;
         justify-items: center;
+        width: -webkit-fill-available;
     }
 
     /* Hide elements you don't want in sticky mode */
@@ -66,7 +56,7 @@ display: none !important;
     #sticky-form-wrapper.is-sticky.visible .product_variation_sku_wrapper,
     #sticky-form-wrapper.is-sticky.visible .flag-outer.flag-outer-compare 
     {
-    display: none !important;
+        display: none !important;
     }
 
 
@@ -81,42 +71,39 @@ display: none !important;
     .commerce-order-item-add-to-cart-form,
     #sticky-form-wrapper.is-sticky.visible 
     form {
-    display: flex !important;
-    align-items: center;
-    /* flex-wrap: wrap; */
-    gap: 10px;
+        display: flex !important;
+        align-items: center;
+        /* flex-wrap: wrap; */
+        gap: 10px;
     }
 
     /* Title font size adjustments */
     #sticky-form-wrapper.is-sticky.visible #desktop-title .c-font-uppercase.c-font-bold {
-    font-size: 15px !important;
-    margin-bottom: 0 !important;
-    /* color:white; */
+        font-size: 15px !important;
+        margin-bottom: 0 !important;
+        /* color:white; */
     }
 
     /* Adjust price layout */
     #sticky-form-wrapper.is-sticky.visible .c-product-meta > .c-product-price
     {
-    font-size: 15px !important;
-    margin-bottom: 0 !important;
-    width:100px; /* Fixed width to prevent layout shift */
+        font-size: 15px !important;
+        margin-bottom: 0 !important;
+        width:100px; /* Fixed width to prevent layout shift */
     }
 
     /* Fixing layout shift in price */
     #sticky-form-wrapper.is-sticky.visible .c-product-meta > .c-product-price .smart-save
     {
-    font-size: 15px !important;
-    margin-bottom: 0 !important;
+        font-size: 15px !important;
+        margin-bottom: 0 !important;
     }
 
     /* SKU layout adjustments */
     #sticky-form-wrapper.is-sticky.visible #nor_sticky_sku {
         display: block !important;
     }
-    /* #sticky-form-wrapper.is-sticky.visible 
-    .button--add-to-cart.c-font-bold.c-font-uppercase.c-font-white.button--primary.js-form-submit.form-submit {
-    margin: 0 !important;
-    } */
+    
 
     #sticky-form-wrapper.is-sticky.visible 
     .form-actions .btn-medium {
@@ -125,84 +112,35 @@ display: none !important;
         margin-right: 0 !important;
     }
 
-    /* Attribute box layout adjustments */
-    /* #sticky-form-wrapper.is-sticky.visible 
-    .product--rendered-attribute.fieldgroup.form-composite.required.js-form-item.form-item.js-form-wrapper.form-wrapper.form-group {
-    position: fixed !important;
-    background: #fff !important;
-    top: 58px !important;
-    width: min-content !important;
-    z-index: 1100;
-    } */
-
-    /* Position the two fieldsets (Format and Size) in sticky mode */
-    /* #sticky-form-wrapper.is-sticky.visible 
-    #edit-purchased-entity-0-attributes > fieldset:first-child {
-    left: 250px !important;
-    } */
-
-    /* #sticky-form-wrapper.is-sticky.visible 
-    #edit-purchased-entity-0-attributes > fieldset:last-child {
-    left: 733px !important;
-    } */
-
    
-    /* #sticky-form-wrapper.is-sticky.visible 
-    fieldset[id*="attribute-format"] {
-    position: absolute !important;
-    top: 58px !important;
-    left: 250px !important;
-    z-index: 1100;
-    background: #fff !important;
-    width: min-content !important;
-    display: none;
-    padding:5px;
-    box-shadow: 0 2px 8px #0000001a;
-    }
-
-  
-    #sticky-form-wrapper.is-sticky.visible 
-    fieldset[id*="attribute-size"] {
-    position: absolute !important;
-    top: 58px !important;
-    left: 733px !important;
-    z-index: 1100;
-    background: #fff !important;
-    width: min-content !important;
-    display: none;
-    padding:5px;
-    box-shadow: 0 2px 8px #0000001a;
-    } */
-
-
     /* Sticky mode: target Format fieldset */
     #sticky-form-wrapper.is-sticky.visible
     fieldset[id*="attribute-format"] {
-    position: absolute !important;
-    top: 58px !important;
-    /* left: 44% !important; */
-    z-index: 1100;
-    background: #fff !important;
-    width: min-content !important;
-    /* hidden by default in sticky mode */
-    display: none !important;
-    padding: 5px;
-    box-shadow: 0 2px 8px #0000001a;
+        position: absolute !important;
+        top: 58px !important;
+        /* left: 44% !important; */
+        z-index: 1100;
+        background: #fff !important;
+        width: min-content !important;
+        /* hidden by default in sticky mode */
+        display: none !important;
+        padding: 5px;
+        box-shadow: 0 2px 8px #00000031;
     }
 
     /* Sticky mode: target Size fieldset */
     #sticky-form-wrapper.is-sticky.visible
     fieldset[id*="attribute-size"] {
-    position: absolute !important;
-    top: 58px !important;
-    /* left: 57% !important; */
-    z-index: 1100;
-    background: #fff !important;
-    width: min-content !important;
-    /* hidden by default in sticky mode */
-    display: none !important;
-    padding: 5px;
-    box-shadow: 0 2px 8px #0000001a;
+        position: absolute !important;
+        top: 58px !important;
+        /* left: 57% !important; */
+        z-index: 1100;
+        background: #fff !important;
+        width: min-content !important;
+        /* hidden by default in sticky mode */
+        display: none !important;
+        padding: 5px;
+        box-shadow: 0 2px 8px #00000031;
     }
 
     /* When JS toggles the open class while wrapper is sticky, show it */
@@ -210,43 +148,67 @@ display: none !important;
     fieldset[id*="attribute-format"].open,
     #sticky-form-wrapper.is-sticky.visible
     fieldset[id*="attribute-size"].open {
-    display: block !important;
+        display: block !important;
     }
 
-    /* When not sticky the fieldsets should be controlled by normal Drupal markup.
-    Make sure there are no leftover inline styles from JS (JS change below prevents that). */
+    
+    #sticky-form-wrapper.ajax-refreshing
+    fieldset[id*="attribute-format"],
+    #sticky-form-wrapper.ajax-refreshing
+    fieldset[id*="attribute-size"] {
+        display: block !important;
+        visibility: hidden !important; 
+    }
+
+  
+    #sticky-form-wrapper.ajax-refreshing
+    fieldset.open {
+        visibility: visible !important;
+    }
+
+    
 
     
     /* Hide promotion margin in sticky mode */
     #sticky-form-wrapper.is-sticky.visible 
     .product--variation-field--variation_field_sale_promotion__1731.data.price.smart-save.empty {
-    margin-bottom: 0 !important;
+        margin-bottom: 0 !important;
     }
 
     /* Hide quantity label in sticky mode */
     #sticky-form-wrapper.is-sticky.visible 
     .form-group.js-form-item.form-item.js-form-type-number.form-item-quantity-0-value.js-form-item-quantity-0-value > label {
-    display: none !important;
+        display: none !important;
     }
 
     /* fix quantity margins */
     #sticky-form-wrapper.is-sticky.visible 
     .form-group.js-form-item.form-item.js-form-type-number.form-item-quantity-0-value.js-form-item-quantity-0-value {
-    margin:0!important;
+        margin:0!important;
     }
 
 
-    /* FIxing button style
 
-    #sticky-form-wrapper.is-sticky.visible .form-actions.js-form-wrapper.form-wrapper.form-container
-    .form-group {
-    background: unset !important;
-    } */
 
     #sticky-form-wrapper.is-sticky.visible #nor_sticky_format, 
     #sticky-form-wrapper.is-sticky.visible #nor_sticky_size {
         display: block !important;
 
     }
+
+    
+
+    #nor_sticky_format::after,
+    #nor_sticky_size::after {
+        content: "\f078"; /* Unicode for chevron-down */
+        font-family: "Font Awesome 5 Free"; /* or 'Font Awesome 5 Free' depending on version */
+        font-weight: 900; /* Needed for solid icons */
+        display: inline-block;
+        margin-left: 6px;
+        font-size: 10px;
+        vertical-align: middle;
+    }
+
+
 
 }

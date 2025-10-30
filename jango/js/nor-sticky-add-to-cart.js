@@ -89,6 +89,30 @@
         const formatToggle = document.getElementById('nor_sticky_format');
         const sizeToggle = document.getElementById('nor_sticky_size');
 
+        function saveOpenState(type) {
+          localStorage.setItem('sticky_open_fieldset', type);
+        }
+
+        function restoreOpenState() {
+          const saved = localStorage.getItem('sticky_open_fieldset');
+          const stickyVisible = $wrapper.hasClass('is-sticky visible');
+          const mediaOK = window.matchMedia('(min-width: 1024px)').matches;
+          if (!stickyVisible || !mediaOK || !saved) return;
+
+          const f = getFormatFieldset();
+          const s = getSizeFieldset();
+
+          if (saved === 'format' && f) {
+            f.classList.add('open');
+            const stickyRect = formatToggle.getBoundingClientRect();
+            f.style.left = `${stickyRect.left}px`;
+          } else if (saved === 'size' && s) {
+            s.classList.add('open');
+            const stickyRect = sizeToggle.getBoundingClientRect();
+            s.style.left = `${stickyRect.left}px`;
+          }
+        }
+
         const toggleFieldset = (targetFieldset, otherFieldset, target_sticky_field) => {
           if (!targetFieldset) return;
           const wasOpen = targetFieldset.classList.contains('open');
@@ -100,17 +124,21 @@
           if (wasOpen) 
           {
             targetFieldset.classList.remove('open');
+            localStorage.removeItem('sticky_open_fieldset');
           } 
           else 
           {
             targetFieldset.classList.add('open');
             var target_sticky_field_element = sizeToggle;
+            let type = 'size';
             if (target_sticky_field == 1) 
             {
               target_sticky_field_element = formatToggle;
+              type = 'format';
             } 
             const stickyRect = target_sticky_field_element.getBoundingClientRect();
             targetFieldset.style.left = `${stickyRect.left}px`;
+            saveOpenState(type);
           }
         };
 
@@ -155,7 +183,7 @@
             const stickyVisible = $wrapper.hasClass('is-sticky visible');
             const mediaOK = window.matchMedia('(min-width: 1024px)').matches;
             if (stickyVisible && mediaOK) {
-              toggleFieldset(getFormatFieldset(), getSizeFieldset(),1);
+              toggleFieldset(getFormatFieldset(), getSizeFieldset(), 1);
             } 
           });
         }
@@ -165,10 +193,18 @@
             const stickyVisible = $wrapper.hasClass('is-sticky visible');
             const mediaOK = window.matchMedia('(min-width: 1024px)').matches;
             if (stickyVisible && mediaOK) {
-              toggleFieldset(getSizeFieldset(), getFormatFieldset(),2);
+              toggleFieldset(getSizeFieldset(), getFormatFieldset(), 2);
             } 
           });
         }
+
+        $(document).ajaxComplete(function () {
+          setTimeout(() => {
+            restoreOpenState();
+          }, 200); 
+        });
+
+        setTimeout(() => restoreOpenState(), 200);
 
         (function recheckStickyState() {
           const scrollTop = $window.scrollTop();
@@ -179,6 +215,18 @@
             $wrapper.removeClass('is-sticky visible');
           }
         })();
+
+        
+        $(document).on('ajaxSend', function () {
+          $wrapper.addClass('ajax-refreshing');
+        });
+
+        
+        $(document).on('ajaxComplete', function () {
+          restoreOpenState();
+          setTimeout(() => $wrapper.removeClass('ajax-refreshing'), 50);
+        });
+
 
       });
     }
