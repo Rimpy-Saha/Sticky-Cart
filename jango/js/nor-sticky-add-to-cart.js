@@ -145,13 +145,11 @@
         $window.on('resize.stickyProductForm', function () {
           wrapperOffset = $wrapper.offset().top;
 
-          // Update left positions if sticky and fieldsets are open
           if ($wrapper.hasClass('is-sticky visible')) {
             const f = getFormatFieldset();
             const s = getSizeFieldset();
-            const stickyRect = $wrapper[0].getBoundingClientRect();
-            if (f && f.classList.contains('open')) f.style.left = `${stickyRect.left}px`;
-            if (s && s.classList.contains('open')) s.style.left = `${stickyRect.left}px`;
+            if (f && f.classList.contains('open')) f.style.left = `${(formatToggle.getBoundingClientRect()).left}px`;
+            if (s && s.classList.contains('open')) s.style.left = `${(sizeToggle.getBoundingClientRect()).left}px`;
           }
         });
 
