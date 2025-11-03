@@ -259,65 +259,77 @@
           {{ product.variation_field_product_image }}
           {{ node.field_testimonial.0.value|raw }}
         </div>
-        <div class="col-md-6">
-          <div class="c-product-meta">
-            <div id="desktop-title" class="c-content-title-1 desktop">
-              <h3 class="c-font-uppercase c-font-bold">{{ product.title }}</h3>     
-              <div class="c-line-left"></div>
-            </div>
-            <div class="c-product-badge">
-              {% if product.field_sale_label[0]['#markup'] != 'Off' %}
-                {{ product.field_sale_label }}
-              {% endif %}
-              {% if product.field_new_label[0]['#markup'] != 'Off' %}
-                {{ product.field_new_label }}
-              {% endif %}
-            </div>
-            {# <div class="c-product-review">
-              {{ product.field_rating }}
-              <div class="c-product-write-review">
-                <a class="c-font-red write-review-link" href="#reviews">
-                  {{ 'Write a review'|t }}
-                </a>
+        <div  id="sticky-form-wrapper" class="col-md-6">
+          <div class="c-product-meta container m-auto">          
+            <div id="sticky_product_info_wrapper">
+              <div id="desktop-title" class="c-content-title-1 desktop">
+                <h3 class="c-font-uppercase c-font-bold">{{ product.title }}</h3>     
+                <div class="c-line-left"></div>
               </div>
-            </div> #}
-            <div id="desktop-summary-line" class="field-name-field-product-summary-line desktop" style="clear:both;">{{ node.field_product_summary_line.0.value|raw }}<hr></div>
-            <div class="product-uses-wrapper">
-              <hr class="mobile" style="margin-top:3em;">
-              {{node.norproduct_use.0.value|raw}}
-              {% if node.field_health_canada_approved.0.value == 1 or node.field_ce_marked_image.0.value == 1 %}
-							<div class="ce-pos">
-                {% if node.field_health_canada_approved.0.value == 1 %}
-                  <div>
-										<img src="/sites/default/files/norproduct/Maple_Leaf.svg" style="height:36px;max-width:none;" alt="red maple leaf" title="Health Canada Approved">
-									</div>
-                {% endif %}
-                {% if node.field_ce_marked_image.0.value == 1 %}
-									<div>
-										<img src="/sites/default/files/norproduct/European_Conformity_logo.svg" style="height:36px;max-width:none;" alt="CE logo" title="CE Marked Product">
-									</div>
-                {% endif %}
-							</div>
-              {% endif %}
-						</div>
-						<div class="bioz">
-              {{ bioz_badge_html|raw }}
-						</div>
-            <hr>
-            <!-- Need to display price in product.variations... Find where that is being rendered -->
-            <div class="c-product-price">
-            {% if restricted_country %}
-            {% else %}
-              {{ product.variation_price }}
-              <span class="c-font-16 c-font-line-through c-font-red">
-                {{ product.variation_field_old_price }}
-              </span>
-              {% endif %}
+              <div id="nor_sticky_sku_price">
+                <div class="product_variation_sku_wrapper_hidden" id = "nor_sticky_sku">
+                  <span class="notranslate">SKU {{product.variation_sku}}</span>
+                </div>
+                <div class="c-product-badge">
+                  {% if product.field_sale_label[0]['#markup'] != 'Off' %}
+                    {{ product.field_sale_label }}
+                  {% endif %}
+                  {% if product.field_new_label[0]['#markup'] != 'Off' %}
+                    {{ product.field_new_label }}
+                  {% endif %}
+                </div>
+                {# <div class="c-product-review">
+                  {{ product.field_rating }}
+                  <div class="c-product-write-review">
+                    <a class="c-font-red write-review-link" href="#reviews">
+                      {{ 'Write a review'|t }}
+                    </a>
+                  </div>
+                </div> #}
+                <div id="desktop-summary-line" class="field-name-field-product-summary-line desktop" style="clear:both;">{{ node.field_product_summary_line.0.value|raw }}<hr></div>
+                <div class="product-uses-wrapper">
+                  <hr class="mobile" style="margin-top:3em;">
+                  {{node.norproduct_use.0.value|raw}}
+                  {% if node.field_health_canada_approved.0.value == 1 or node.field_ce_marked_image.0.value == 1 %}
+                  <div class="ce-pos">
+                    {% if node.field_health_canada_approved.0.value == 1 %}
+                      <div>
+                        <img src="https://norgenbiotek.com/sites/default/files/norproduct/Maple_Leaf.svg" style="height:36px;max-width:none;" alt="red maple leaf" title="Health Canada Approved">
+                      </div>
+                    {% endif %}
+                    {% if node.field_ce_marked_image.0.value == 1 %}
+                      <div>
+                        <img src="https://norgenbiotek.com/sites/default/files/norproduct/European_Conformity_logo.svg" style="height:36px;max-width:none;" alt="CE logo" title="CE Marked Product">
+                      </div>
+                    {% endif %}
+                  </div>
+                  {% endif %}
+                </div>
+                <hr>
+                <!-- Need to display price in product.variations... Find where that is being rendered -->
+                <div class="c-product-price">
+                {% if restricted_country %}
+                {% else %}
+                  {{ product.variation_price }}
+                  <span class="c-font-16 c-font-line-through c-font-red">
+                    {{ product.variation_field_old_price }}
+                  </span>
+                  {% endif %}
+                </div>
+              </div>
+
+              <div class="product_variation_sku_wrapper"><div class="d-inline c-font-bold">SKU</div>{{product.variation_sku}}</div>
+            </div>
+            <div id="nor_sticky_cart_selectors">
+              <div id="nor_sticky_format_and_size">{# Group these together #}
+                {# Independent element to show selected format #}
+                <div id="nor_sticky_format">Format</div>
+                {# Independent element to show selected format #}
+                <div id="nor_sticky_size">Size</div>
+              </div>
+              {{ product.variations }}
             </div>
 
-            <div class="product_variation_sku_wrapper"><div class="label">SKU</div>{{product.variation_sku}}</div>
-            
-            {{ product.variations }}
 
             {% if valid_sku_array|length > 0 %}
             <a class="btn request-sample-btn btn-mod c-btn c-theme-btn c-font-bold c-font-uppercase c-font-white button--secondary-teal" href="/request-sample">Request sample</a>
@@ -352,7 +364,7 @@
         {% endif %}
         <li class="nav_item" id="citations-nav"><a href="#citations">{{ 'Citations'|t }}</a></li>
         {# <li class="nav_item ">
-          <a href="#documentation" class = "review-toggler" id = "reviews" data-bs-toggle="tab">{{ 'Reviews'|t }}</a>
+          <a href="#documentation" class = "review-toggler" id = "reviews" data-toggle="tab">{{ 'Reviews'|t }}</a>
         </li> #}
       </ul>
 
@@ -616,7 +628,7 @@
                       </div>
                     </div>  
                   {% elseif item.entity.name.value == 'plant' %}
-                    <img src="/sites/default/files/images/services-btn-ngs.png" alt="NGS Service" >
+                    <img src="https://norgenbiotek.com/sites/default/files/images/services-btn-ngs.png" alt="NGS Service" >
                   {% elseif item.entity.name.value == 'rna' %}
                   <div class="reffect col-md-4 col-sm-12">
                       <div class="rinfo"><h4><a href="/services/rna-isolation-service" target="_blank"> RNA Isolation</a></h4></div>

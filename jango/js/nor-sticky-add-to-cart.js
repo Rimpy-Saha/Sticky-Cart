@@ -35,10 +35,30 @@
         const formatDiv = document.getElementById('nor_sticky_format');
         const sizeDiv = document.getElementById('nor_sticky_size');
 
+
         function updateLabels() {
-          if (formatDiv) formatDiv.textContent = ' ' + getSelectedFormat();
-          if (sizeDiv) sizeDiv.textContent = ' ' + getSelectedSize();
+          const formatText = getSelectedFormat();
+          const sizeText = getSelectedSize();
+
+          if (formatDiv) {
+            if (formatText === 'None') {
+              formatDiv.style.display = 'none';
+            } else {
+              formatDiv.style.display = '';
+              formatDiv.textContent = ' ' + formatText;
+            }
+          }
+
+          if (sizeDiv) {
+            if (sizeText === 'None') {
+              sizeDiv.style.display = 'none';
+            } else {
+              sizeDiv.style.display = '';
+              sizeDiv.textContent = ' ' + sizeText;
+            }
+          }
         }
+
 
         setTimeout(updateLabels, 300);
 
@@ -92,11 +112,11 @@
         const sizeToggle = document.getElementById('nor_sticky_size');
 
         function saveOpenState(type) {
-          localStorage.setItem('sticky_open_fieldset', type);
+          sessionStorage.setItem('sticky_open_fieldset', type);
         }
 
         function restoreOpenState() {
-          const saved = localStorage.getItem('sticky_open_fieldset');
+          const saved = sessionStorage.getItem('sticky_open_fieldset');
           const stickyVisible = $wrapper.hasClass('is-sticky visible');
           const mediaOK = window.matchMedia('(min-width: 1024px)').matches;
           if (!stickyVisible || !mediaOK || !saved) return;
@@ -127,7 +147,7 @@
           if (wasOpen) 
           {
             targetFieldset.classList.remove('open');
-            localStorage.removeItem('sticky_open_fieldset');
+            sessionStorage.removeItem('sticky_open_fieldset');
           } 
           else 
           {
@@ -146,6 +166,27 @@
             saveOpenState(type);
           }
         };
+
+        document.addEventListener('click', function (e) {
+          const wrapper = document.querySelector('#sticky-form-wrapper.is-sticky.visible');
+          if (!wrapper) return;
+
+          const f = getFormatFieldset();
+          const s = getSizeFieldset();
+          const formatToggle = document.getElementById('nor_sticky_format');
+          const sizeToggle = document.getElementById('nor_sticky_size');
+
+          if (!(f && f.classList.contains('open')) && !(s && s.classList.contains('open'))) return;
+
+          if ((f && f.contains(e.target)) || (s && s.contains(e.target)) ||
+              (formatToggle && formatToggle.contains(e.target)) ||
+              (sizeToggle && sizeToggle.contains(e.target))) return;
+
+          if (f) f.classList.remove('open');
+          if (s) s.classList.remove('open');
+          sessionStorage.removeItem('sticky_open_fieldset');
+        }, true);
+
 
         $window.on('resize.stickyProductForm', function () {
           if ($wrapper.hasClass('is-sticky visible')) {
