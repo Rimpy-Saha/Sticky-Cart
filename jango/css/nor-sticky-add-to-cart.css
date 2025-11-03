@@ -2,50 +2,52 @@
 
 /* Hide the new sticky SKU by default */
 #nor_sticky_sku {
-    display: none !important;
+    display: none;
 }
 
 /* Only apply sticky behavior on desktops */
 @media (min-width: 1024px) {
 
-    #sticky-form-wrapper {
+    /* #sticky-form-wrapper {
         position: relative;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        z-index: 10;
-    }
+    } */
 
     #sticky-form-wrapper.is-sticky {
         position: fixed;
-        top: 105px; /* adjust if you have a header */
+        top: 100px; /* adjust if you have a header */
         left: 0;
         width: 100%;
         background: #ffffff00;
         justify-items: anchor-center;
         /* box-shadow: 0 2px 8px #0000001a; */
         transform: translateY(-100%);
-        z-index: 99999;
+        z-index: 9999;
     }
 
     #sticky-form-wrapper.is-sticky.visible {
         transform: translateY(0);
+        background: #e5ecf4;
+        box-shadow: 0 1px 8px #00234996;
     }
 
+    #sticky-form-wrapper .c-product-meta.container{
+        padding:0px;
+    }
 
     #sticky-form-wrapper.is-sticky.visible .c-product-meta {
-        display: grid;
-        grid-auto-flow: column;
-        font-size: 15px !important;
-        margin: 0 !important;
-        background: #e5ecf4;        
-        /* border: 1px solid #004897; */
+        display: flex;
+        flex-wrap:wrap;
+        column-gap:20px;
+        row-gap:10px;
+        font-size: 14px;  
         border-radius: 10px;
-        box-shadow: 0 1px 8px #00234996;
         padding: 10px;
-        width: 60%;
-        justify-content: space-between;
         align-items: center;
         justify-items: center;
-        width: -webkit-fill-available;
+        justify-content:space-between;
+        width: 100%;
+        position:relative;
     }
 
     /* Hide elements you don't want in sticky mode */
@@ -54,9 +56,10 @@
     #sticky-form-wrapper.is-sticky.visible .promo-div,
     #sticky-form-wrapper.is-sticky.visible #nor_anonymous_register_today,
     #sticky-form-wrapper.is-sticky.visible .product_variation_sku_wrapper,
-    #sticky-form-wrapper.is-sticky.visible .flag-outer.flag-outer-compare 
+    #sticky-form-wrapper.is-sticky.visible .flag-outer.flag-outer-compare,
+    #sticky-form-wrapper.is-sticky.visible .extraclean-logo
     {
-        display: none !important;
+        display: none;
     }
 
 
@@ -71,76 +74,88 @@
     .commerce-order-item-add-to-cart-form,
     #sticky-form-wrapper.is-sticky.visible 
     form {
-        display: flex !important;
+        display: flex;
         align-items: center;
         /* flex-wrap: wrap; */
         gap: 10px;
+        margin-left:-10px;
     }
-
+    #sticky-form-wrapper.is-sticky.visible #sticky_product_info_wrapper{
+        display:grid;
+    }
     /* Title font size adjustments */
     #sticky-form-wrapper.is-sticky.visible #desktop-title .c-font-uppercase.c-font-bold {
-        font-size: 15px !important;
-        margin-bottom: 0 !important;
-        /* color:white; */
+        font-size: 14px;
+        margin-bottom: 0;
+        max-width: 400px;
+    }
+
+    #sticky-form-wrapper.is-sticky.visible #nor_sticky_sku_price{
+        display:flex;
+        gap:20px;
+        width:100%;
+        justify-content:space-between;
+        margin-top:4px;
     }
 
     /* Adjust price layout */
-    #sticky-form-wrapper.is-sticky.visible .c-product-meta > .c-product-price
+    #sticky-form-wrapper.is-sticky.visible .c-product-meta .c-product-price
     {
-        font-size: 15px !important;
-        margin-bottom: 0 !important;
-        width:100px; /* Fixed width to prevent layout shift */
+        font-size: 18px;
+        line-height:18px;
+        font-weight:700;
+        margin-bottom: 0;
+        color:var(--norgen-primary-blue-dark);
     }
 
     /* Fixing layout shift in price */
-    #sticky-form-wrapper.is-sticky.visible .c-product-meta > .c-product-price .smart-save
+    #sticky-form-wrapper.is-sticky.visible .c-product-meta .c-product-price .smart-save
     {
-        font-size: 15px !important;
-        margin-bottom: 0 !important;
+        font-size: 14px;
+        margin-bottom: 0;
     }
 
     /* SKU layout adjustments */
     #sticky-form-wrapper.is-sticky.visible #nor_sticky_sku {
-        display: block !important;
+        display: block;
+        font-size:14px;
     }
     
 
     #sticky-form-wrapper.is-sticky.visible 
     .form-actions .btn-medium {
         -webkit-transition: none!important;
-        margin-top: 0 !important;
-        margin-right: 0 !important;
+        margin-top: 0;
+        margin-right: 0;
     }
 
-   
+    #sticky-form-wrapper.is-sticky.visible #nor_sticky_format_and_size{
+        display:flex;
+        gap:10px;
+        height:36px;
+    }
+
+    #sticky-form-wrapper.is-sticky.visible #nor_sticky_cart_selectors{
+        display:flex;
+        gap:10px;
+    }   
+
     /* Sticky mode: target Format fieldset */
     #sticky-form-wrapper.is-sticky.visible
-    fieldset[id*="attribute-format"] {
-        position: absolute !important;
-        top: 58px !important;
-        /* left: 44% !important; */
-        z-index: 1100;
-        background: #fff !important;
-        width: min-content !important;
-        /* hidden by default in sticky mode */
-        display: none !important;
-        padding: 5px;
-        box-shadow: 0 2px 8px #00000031;
-    }
-
-    /* Sticky mode: target Size fieldset */
+    fieldset[id*="attribute-format"],
     #sticky-form-wrapper.is-sticky.visible
     fieldset[id*="attribute-size"] {
-        position: absolute !important;
-        top: 58px !important;
-        /* left: 57% !important; */
+        position: absolute;
+        top: 100%; /* always positioned at the bottom of the sticky cart */
         z-index: 1100;
-        background: #fff !important;
-        width: min-content !important;
+        background: #fff;
+        max-width:480px;
         /* hidden by default in sticky mode */
-        display: none !important;
+        display: none;
         padding: 5px;
         box-shadow: 0 2px 8px #00000031;
+        border-radius:0px 0px 5px 5px;
+        margin-top:0px;
     }
 
     /* When JS toggles the open class while wrapper is sticky, show it */
@@ -148,23 +163,49 @@
     fieldset[id*="attribute-format"].open,
     #sticky-form-wrapper.is-sticky.visible
     fieldset[id*="attribute-size"].open {
-        display: block !important;
+        display: block;
+        padding:10px;
     }
 
+    #sticky-form-wrapper.is-sticky.visible
+    fieldset[id*="attribute-format"].open > legend,
+    #sticky-form-wrapper.is-sticky.visible
+    fieldset[id*="attribute-size"].open > legend{
+        font-size: 16px;
+    }
+
+    #sticky-form-wrapper.is-sticky.visible .product--rendered-attribute.fieldgroup>.fieldset-wrapper>div{
+        grid-gap:10px;
+    }
+    /* Adjust number of columns based on the number of children */
+    #sticky-form-wrapper.is-sticky.visible .product--rendered-attribute.fieldgroup>.fieldset-wrapper>div:has(> *:only-child){
+        grid-template-columns: 1fr;
+    }
+    #sticky-form-wrapper.is-sticky.visible .product--rendered-attribute.fieldgroup>.fieldset-wrapper>div:has(> :last-child:nth-child(2)){
+        grid-template-columns: repeat(2, 1fr);
+    }
     
-    #sticky-form-wrapper.ajax-refreshing
+    /* #sticky-form-wrapper.ajax-refreshing
     fieldset[id*="attribute-format"],
     #sticky-form-wrapper.ajax-refreshing
     fieldset[id*="attribute-size"] {
-        display: block !important;
-        visibility: hidden !important; 
-    }
+        display: block;
+        visibility: hidden; 
+    } */
 
-  
-    #sticky-form-wrapper.ajax-refreshing
-    fieldset.open {
-        visibility: visible !important;
+    #sticky-form-wrapper.is-sticky.visible div[data-drupal-selector^="edit-actions"] .submit{
+        background-color:transparent!important;
     }
+    #sticky-form-wrapper.is-sticky.visible .commerce-order-item-add-to-cart-form .attribute-widgets div.product-row, 
+    #sticky-form-wrapper.is-sticky.visible .commerce-order-item-add-to-cart-form .attribute-widgets div.format-row{
+        font-size:14px;
+        padding:10px;
+    }
+  
+    /* #sticky-form-wrapper.ajax-refreshing
+    fieldset.open {
+        visibility: visible;
+    } */
 
     
 
@@ -172,13 +213,13 @@
     /* Hide promotion margin in sticky mode */
     #sticky-form-wrapper.is-sticky.visible 
     .product--variation-field--variation_field_sale_promotion__1731.data.price.smart-save.empty {
-        margin-bottom: 0 !important;
+        margin-bottom: 0;
     }
 
     /* Hide quantity label in sticky mode */
     #sticky-form-wrapper.is-sticky.visible 
     .form-group.js-form-item.form-item.js-form-type-number.form-item-quantity-0-value.js-form-item-quantity-0-value > label {
-        display: none !important;
+        display: none;
     }
 
     /* fix quantity margins */
@@ -187,12 +228,28 @@
         margin:0!important;
     }
 
+    #sticky-form-wrapper.is-sticky.visible input[data-drupal-selector^="edit-quantity"]{
+        max-width: 100px;
+        height: 36px;
+        border-radius: 5px;
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
 
-
-
+    #sticky-form-wrapper #nor_sticky_format,
+    #sticky-form-wrapper #nor_sticky_size{
+        display: none;
+        cursor: pointer;
+        background: white;
+        padding: 2px 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        line-height: 30px;
+        font-size:14px;
+    }
     #sticky-form-wrapper.is-sticky.visible #nor_sticky_format, 
     #sticky-form-wrapper.is-sticky.visible #nor_sticky_size {
-        display: block !important;
+        display: block;
 
     }
 
@@ -209,6 +266,12 @@
         vertical-align: middle;
     }
 
-
-
+}
+@media (max-width: 1199px) { /* Adjust for mobile menu */
+    #sticky-form-wrapper.is-sticky{
+        top: 65px
+    }
+    #sticky-form-wrapper.is-sticky.visible #desktop-title .c-font-uppercase.c-font-bold{
+        max-width:none;
+    }
 }

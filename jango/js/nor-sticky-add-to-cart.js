@@ -78,6 +78,8 @@
         $wrapper.data('sticky-attached', true);
         const $window = $(window);
         let wrapperOffset = $wrapper.offset().top;
+        let wrapperHeight = $wrapper.outerHeight();
+        let navigationHeight = $('header .c-navbar').outerHeight();
 
         function getFormatFieldset() {
           return document.querySelector('[data-drupal-selector="edit-purchased-entity-0-attributes-attribute-format"]');
@@ -101,15 +103,16 @@
 
           const f = getFormatFieldset();
           const s = getSizeFieldset();
+          const stickyContainer = document.querySelector('#sticky-form-wrapper.is-sticky.visible .c-product-meta'); /* Added by Liam :D */
 
           if (saved === 'format' && f) {
             f.classList.add('open');
             const stickyRect = formatToggle.getBoundingClientRect();
-            f.style.left = `${stickyRect.left}px`;
+            f.style.left = `${stickyRect.left - stickyContainer.getBoundingClientRect().left}px`;
           } else if (saved === 'size' && s) {
             s.classList.add('open');
             const stickyRect = sizeToggle.getBoundingClientRect();
-            s.style.left = `${stickyRect.left}px`;
+            s.style.left = `${stickyRect.left - stickyContainer.getBoundingClientRect().left}px`;
           }
         }
 
@@ -137,19 +140,21 @@
               type = 'format';
             } 
             const stickyRect = target_sticky_field_element.getBoundingClientRect();
-            targetFieldset.style.left = `${stickyRect.left}px`;
+            const stickyContainer = document.querySelector('#sticky-form-wrapper.is-sticky.visible .c-product-meta'); /* Added by Liam :D */
+
+            targetFieldset.style.left = `${stickyRect.left - stickyContainer.getBoundingClientRect().left}px`;
             saveOpenState(type);
           }
         };
 
         $window.on('resize.stickyProductForm', function () {
-          wrapperOffset = $wrapper.offset().top;
-
           if ($wrapper.hasClass('is-sticky visible')) {
             const f = getFormatFieldset();
             const s = getSizeFieldset();
-            if (f && f.classList.contains('open')) f.style.left = `${(formatToggle.getBoundingClientRect()).left}px`;
-            if (s && s.classList.contains('open')) s.style.left = `${(sizeToggle.getBoundingClientRect()).left}px`;
+            const stickyContainer = document.querySelector('#sticky-form-wrapper.is-sticky.visible .c-product-meta'); /* Added by Liam :D */
+
+            if (f && f.classList.contains('open')) f.style.left = `${formatToggle.getBoundingClientRect().left - stickyContainer.getBoundingClientRect().left}px`;
+            if (s && s.classList.contains('open')) s.style.left = `${sizeToggle.getBoundingClientRect().left - stickyContainer.getBoundingClientRect().left}px`;
           }
         });
 
@@ -157,7 +162,7 @@
           const scrollTop = $window.scrollTop();
           const mediaOK = window.matchMedia('(min-width: 1024px)').matches;
 
-          if (scrollTop >= wrapperOffset && mediaOK) {
+          if (scrollTop >= (wrapperOffset + wrapperHeight - navigationHeight) && mediaOK) { /* added wrapperHeight and navigationHeight as part of calculation - Liam :D */
             if (!$wrapper.hasClass('is-sticky visible')) {
               $wrapper.addClass('is-sticky visible');
               const f = getFormatFieldset();
