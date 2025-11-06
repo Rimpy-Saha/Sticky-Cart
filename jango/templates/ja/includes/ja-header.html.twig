@@ -756,46 +756,10 @@ input[type="text"]:focus{
                             <a href="/ja" class="site-logo active"><img src="/sites/default/files/norgen-logo.svg" alt="Norgen Biotek Corp." width="150" height="47" style="top:-4px;position:relative;"></a>
                             <div style="display:flex;gap:10px;align-items: center;">
                                 <div >
-                        <a href="javascript:void(0)" onclick="toggleCart()" class="c-btn-icon c-cart-toggler">
+                        <a href="/ja/cart" class="c-btn-icon c-cart-toggler">
                             <i class="icon-handbag c-cart-icon"></i>
                             <span class="c-cart-number c-theme-bg">{{ cart_count }}</span>
                         </a>
-                        <!-- cart_block -->
-                        {% if cart_block != FALSE %}
-                        {% set existing_classes =  attributes.addClass('c-cart-menu', 'desktop') %}
-
-                        <div id = 'cart-sidebar-desktop-header' class="{{ existing_classes.class }}{{ add_class ? ' desktop-cart-sidebar' : '' }}">
-                            <div class="c-cart-menu-title">
-                                <p class="c-cart-menu-float-l c-font-sbold">{{ count_text }}</p>
-                                <p class="c-cart-menu-float-r c-theme-font c-font-sbold">{{ cart_total_price }}</p>
-                            
-                            </div>
-                            <div style="display:flex;    align-items: center;">
-                            <div style="width:120%;padding: 0 10px;">
-                                <h2 style="font-weight:600;    white-space: break-spaces;">あなたのカート, {{ cart_count }} アイテム</h2>
-                            </div>
-                            <div style="width:100%;text-align: right;">
-                                <button style="border-radius:4px;border-width:0!important;color:#7F8C97;background-color: transparent;font-size:40px" id="close-cart-desktop" onclick='closecart(this)'>&times;</button>
-                            </div>
-                            
-                            </div>
-
-                            <div style="display:flex;justify-content: space-between;padding:10px 10px;">
-                            <p style="letter-spacing:1px;font-size:12px;">PRODUCT</p>
-                            <!--<p style="letter-spacing:1px;font-size:12px;">TOTAL</p>-->
-                            </div>
-                            <hr style="width:90%;margin:auto auto 10px;">
-                               
-                                {{ nor_forms_module_cart_view }}
-                                {# 
-                                
-                                {% if order_id is not empty and order_id != 'NA' %}
-                                {{ drupal_view('cart_form_rimpy_2', 'block_1', order_id) }}
-                                {% else %}
-                                <p>Products added to cart will show up here.</p>
-                                {% endif %} #}
-                            </div>
-                        {% endif %}
                     </div>
                                 <a href="/ja/user" style=""><i class="icon-user"></i></a>
                                 <nav aria-label="mobile navigation">
@@ -965,9 +929,9 @@ input[type="text"]:focus{
                         <a href="/de/user" style="padding:10px 12px; border-radius:25px;color:black; font-weight:normal; display:inline-block;  font-size:14px; display:flex; align-items:center;gap:10px;"><i class="icon-handbag c-cart-icon"></i></a>
                     </li> #}
                     <li class="c-cart-toggler-wrapper">
-                        <a href="javascript:void(0)" onclick="toggleCart()" class="c-btn-icon c-cart-toggler">
+                        <a href="javascript:void(0)" class="c-btn-icon c-cart-toggler">
                             <i class="icon-handbag c-cart-icon"></i>
-                            <span class="c-cart-number c-theme-bg">{{ cart_count }}</span>
+                            <span id="commerce_menu_cart_number_count" class="c-cart-number c-theme-bg">{{ cart_count }}</span>
                         </a>
                         <!-- cart_block -->
                         {% if cart_block != FALSE %}
@@ -977,27 +941,8 @@ input[type="text"]:focus{
                             <div class="c-cart-menu-title">
                                 <p class="c-cart-menu-float-l c-font-sbold">{{ count_text }}</p>
                                 <p class="c-cart-menu-float-r c-theme-font c-font-sbold">{{ cart_total_price }}</p>
-                            
                             </div>
-                            <div style="display:flex;    align-items: center;">
-                            <div style="width:120%;padding: 0 10px;">
-                                <h2 style="font-weight:600;font-size:18px;    white-space: break-spaces;">あなたのカート, {{ cart_count }} アイテム</h2>
-                            </div>
-                            <div style="width:100%;text-align: right;">
-                                <button style="border-radius:4px;border-width:0!important;color:#7F8C97;background-color: transparent;font-size:40px" id="close-cart-desktop" onclick='closecart(this)'>&times;</button>
-                            </div>
-                            
-                            </div>
-
-                            <div style="display:flex;justify-content: space-between;padding:10px 10px;">
-                            <p style="letter-spacing:1px;font-size:12px;">製品</p>
-                            <!--<p style="letter-spacing:1px;font-size:12px;">TOTAL</p>-->
-                            </div>
-                            <hr style="width:90%;margin:auto auto 10px;">
-                               
-                                {{ nor_forms_module_cart_view }}
-
-                            </div>
+                            <div id="nor-forms-sidecart-block">{{ nor_forms_module_cart_view }}</div>
                         {% endif %}
                     </li>
                     <li style="position:relative; padding-right:0.75em;">
@@ -1112,49 +1057,4 @@ for(let i  = 0; i < search_block_form.length;i++){
     search_block_form[i].setAttribute('required', '');
 }
 
-
-
-function closecart(e) {
-    // e.preventDefault(); // Uncomment if needed
-
-   /* console.log('Function triggered.');
-
-    // Select the cart menu element
-    const cartMenu = document.querySelector('.c-cart-menu.desktop:not(.mobile)');
-    if (cartMenu) {
-        cartMenu.classList.remove('desktop-cart-sidebar');
-    } 
-    else {
-        console.log('Cart menu element not found.');
-    }
-
-    // Select the off-canvas main canvas element
-    const mainCanvas = document.querySelector(".dialog-off-canvas-main-canvas");
-    if (mainCanvas) {
-        console.log('Main canvas element founddrfgthdfrgth:', mainCanvas.style);
-       // mainCanvas.style = "margin-right:0!important";
-        // document.getElementsByClassName("dialog-off-canvas-main-canvas")[0].style.marginRight = "390px"; 
-        //document.getElementsByClassName("c-navbar-wrapper clearfix")[0].style.marginRight = "0px";
-        document.querySelector('.dialog-off-canvas-main-canvas').classList.remove('body-desktop-cart-sidebar');
-        document.querySelector('header').classList.remove('body-desktop-cart-sidebar');
-        
-        console.log('Margin reset.', mainCanvas.classList);
-    } else {
-        console.log('Main canvas element not found.', mainCanvas.style);
-    }*/
-    toggleCart()
-}
-
-function toggleCart()
-
-{
-    $('.c-cart-menu.desktop:not(.mobile)').toggleClass('desktop-cart-sidebar');
-    $('.dialog-off-canvas-main-canvas').toggleClass('body-desktop-cart-sidebar');
-    $('header').toggleClass('body-desktop-cart-sidebar');
-    if ($('.c-cart-menu.desktop:not(.mobile)').hasClass('desktop-cart-sidebar')) {
-        document.cookie = "user_choice_for_cart=opened; path=/";
-    } else {
-        document.cookie = "user_choice_for_cart=closed; path=/";
-    }
-}
 </script>

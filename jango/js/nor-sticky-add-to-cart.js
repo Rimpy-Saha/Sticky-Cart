@@ -97,9 +97,21 @@
 
         $wrapper.data('sticky-attached', true);
         const $window = $(window);
+
+        const $header = $('header.c-layout-header.c-layout-header-4.c-layout-header-light-mobile.c-layout-header-default-mobile');
+        const $lastChild = $header.children().last();
+
+        if ($lastChild.prop('tagName').toLowerCase() === 'section') {
+          $wrapper.addClass('nor-prod-international');
+        }
+
         let wrapperOffset = $wrapper.offset().top;
         let wrapperHeight = $wrapper.outerHeight();
-        let navigationHeight = $('header .c-navbar').outerHeight();
+        // let navigationHeight = $('header .c-navbar').outerHeight();
+        let navigationHeight = $('header.c-layout-header.c-layout-header-4.c-layout-header-light-mobile.c-layout-header-default-mobile')
+  .children().last()
+  .outerHeight();
+
 
         function getFormatFieldset() {
           return document.querySelector('[data-drupal-selector="edit-purchased-entity-0-attributes-attribute-format"]');
@@ -116,7 +128,9 @@
         }
 
         function restoreOpenState() {
+          // console.log('restoreOpenState');
           const saved = sessionStorage.getItem('sticky_open_fieldset');
+          // console.log(saved);
           const stickyVisible = $wrapper.hasClass('is-sticky visible');
           const mediaOK = window.matchMedia('(min-width: 1024px)').matches;
           if (!stickyVisible || !mediaOK || !saved) return;
@@ -242,13 +256,13 @@
           });
         }
 
-        $(document).ajaxComplete(function () {
+        /* $(document).ajaxComplete(function () {
           setTimeout(() => {
             restoreOpenState();
           }, 200); 
         });
 
-        setTimeout(() => restoreOpenState(), 200);
+        setTimeout(() => restoreOpenState(), 200); */
 
         (function recheckStickyState() {
           const scrollTop = $window.scrollTop();
@@ -266,7 +280,7 @@
         });
 
         
-        $(document).on('ajaxComplete', function () {
+       $(document).on('ajaxComplete', function () {
           restoreOpenState();
           setTimeout(() => $wrapper.removeClass('ajax-refreshing'), 50);
         });

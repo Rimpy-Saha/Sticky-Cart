@@ -262,63 +262,63 @@
         <div  id="sticky-form-wrapper" class="col-md-6">
           <div class="c-product-meta container m-auto">          
             <div id="sticky_product_info_wrapper">
-              <div id="desktop-title" class="c-content-title-1 desktop">
-                <h3 class="c-font-uppercase c-font-bold">{{ product.title }}</h3>     
-                <div class="c-line-left"></div>
-              </div>
+            <div id="desktop-title" class="c-content-title-1 desktop">
+              <h3 class="c-font-uppercase c-font-bold">{{ product.title }}</h3>     
+              <div class="c-line-left"></div>
+            </div>
               <div id="nor_sticky_sku_price">
                 <div class="product_variation_sku_wrapper_hidden" id = "nor_sticky_sku">
                   <span class="notranslate">SKU {{product.variation_sku}}</span>
                 </div>
-                <div class="c-product-badge">
-                  {% if product.field_sale_label[0]['#markup'] != 'Off' %}
-                    {{ product.field_sale_label }}
-                  {% endif %}
-                  {% if product.field_new_label[0]['#markup'] != 'Off' %}
-                    {{ product.field_new_label }}
-                  {% endif %}
-                </div>
-                {# <div class="c-product-review">
-                  {{ product.field_rating }}
-                  <div class="c-product-write-review">
-                    <a class="c-font-red write-review-link" href="#reviews">
-                      {{ 'Write a review'|t }}
-                    </a>
-                  </div>
-                </div> #}
-                <div id="desktop-summary-line" class="field-name-field-product-summary-line desktop" style="clear:both;">{{ node.field_product_summary_line.0.value|raw }}<hr></div>
-                <div class="product-uses-wrapper">
-                  <hr class="mobile" style="margin-top:3em;">
-                  {{node.norproduct_use.0.value|raw}}
-                  {% if node.field_health_canada_approved.0.value == 1 or node.field_ce_marked_image.0.value == 1 %}
-                  <div class="ce-pos">
-                    {% if node.field_health_canada_approved.0.value == 1 %}
-                      <div>
-                        <img src="https://norgenbiotek.com/sites/default/files/norproduct/Maple_Leaf.svg" style="height:36px;max-width:none;" alt="red maple leaf" title="Health Canada Approved">
-                      </div>
-                    {% endif %}
-                    {% if node.field_ce_marked_image.0.value == 1 %}
-                      <div>
-                        <img src="https://norgenbiotek.com/sites/default/files/norproduct/European_Conformity_logo.svg" style="height:36px;max-width:none;" alt="CE logo" title="CE Marked Product">
-                      </div>
-                    {% endif %}
-                  </div>
-                  {% endif %}
-                </div>
-                <hr>
-                <!-- Need to display price in product.variations... Find where that is being rendered -->
-                <div class="c-product-price">
-                {% if restricted_country %}
-                {% else %}
-                  {{ product.variation_price }}
-                  <span class="c-font-16 c-font-line-through c-font-red">
-                    {{ product.variation_field_old_price }}
-                  </span>
-                  {% endif %}
-                </div>
+            <div class="c-product-badge">
+              {% if product.field_sale_label[0]['#markup'] != 'Off' %}
+                {{ product.field_sale_label }}
+              {% endif %}
+              {% if product.field_new_label[0]['#markup'] != 'Off' %}
+                {{ product.field_new_label }}
+              {% endif %}
+            </div>
+            {# <div class="c-product-review">
+              {{ product.field_rating }}
+              <div class="c-product-write-review">
+                <a class="c-font-red write-review-link" href="#reviews">
+                  {{ 'Write a review'|t }}
+                </a>
+              </div>
+            </div> #}
+            <div id="desktop-summary-line" class="field-name-field-product-summary-line desktop" style="clear:both;">{{ node.field_product_summary_line.0.value|raw }}<hr></div>
+            <div class="product-uses-wrapper">
+              <hr class="mobile" style="margin-top:3em;">
+              {{node.norproduct_use.0.value|raw}}
+              {% if node.field_health_canada_approved.0.value == 1 or node.field_ce_marked_image.0.value == 1 %}
+							<div class="ce-pos">
+                {% if node.field_health_canada_approved.0.value == 1 %}
+                  <div>
+										<img src="https://norgenbiotek.com/sites/default/files/norproduct/Maple_Leaf.svg" style="height:36px;max-width:none;" alt="red maple leaf" title="Health Canada Approved">
+									</div>
+                {% endif %}
+                {% if node.field_ce_marked_image.0.value == 1 %}
+									<div>
+										<img src="https://norgenbiotek.com/sites/default/files/norproduct/European_Conformity_logo.svg" style="height:36px;max-width:none;" alt="CE logo" title="CE Marked Product">
+									</div>
+                {% endif %}
+							</div>
+              {% endif %}
+						</div>
+            <hr>
+            <!-- Need to display price in product.variations... Find where that is being rendered -->
+            <div class="c-product-price">
+            {% if restricted_country %}
+            {% else %}
+              {{ product.variation_price }}
+              <span class="c-font-16 c-font-line-through c-font-red">
+                {{ product.variation_field_old_price }}
+              </span>
+              {% endif %}
+            </div>
               </div>
 
-              <div class="product_variation_sku_wrapper"><div class="d-inline c-font-bold">SKU</div>{{product.variation_sku}}</div>
+            <div class="product_variation_sku_wrapper"><div class="d-inline c-font-bold">SKU</div>{{product.variation_sku}}</div>
             </div>
             <div id="nor_sticky_cart_selectors">
               <div id="nor_sticky_format_and_size">{# Group these together #}
@@ -327,7 +327,7 @@
                 {# Independent element to show selected format #}
                 <div id="nor_sticky_size">Size</div>
               </div>
-              {{ product.variations }}
+            {{ product.variations }}
             </div>
 
 
@@ -349,7 +349,7 @@
   <!-- End Product Content -->
   <div class="c-shop-product-tab-1 pb-0">
     <div class="nav-justified  bootstrap-nav-wrapper">
-      <ul class="nav nav-justified  nav-tabs">
+      <ul class="nav nav-justified  nav-tabs" id ="nor_norproduct_doc_nav_tabs">
         {% if node.body.0.value|length > 0 %}
         <li class="nav_item " id="overview-nav"><a href="#overview">{{ 'Overview'|t }}</a></li>
         {% endif %}
@@ -367,6 +367,11 @@
           <a href="#documentation" class = "review-toggler" id = "reviews" data-toggle="tab">{{ 'Reviews'|t }}</a>
         </li> #}
       </ul>
+
+      <!-- Sticky Add to Cart placeholder -->
+      <div id="sticky-addtocart">
+          This will be where we make the sticky add to cart
+      </div>
 
       <div class="tab-content nav-justified">
         <div class="tab-pane active">

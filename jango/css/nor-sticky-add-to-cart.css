@@ -15,7 +15,7 @@
 
     #sticky-form-wrapper.is-sticky {
         position: fixed;
-        top: 100px; /* adjust if you have a header */
+        top: 100px;
         left: 0;
         width: 100%;
         background: #ffffff00;
@@ -23,6 +23,11 @@
         /* box-shadow: 0 2px 8px #0000001a; */
         transform: translateY(-100%);
         z-index: 9999;
+    }
+
+    #sticky-form-wrapper.is-sticky.nor-prod-international {
+        top: 0px!important;
+        z-index: 99!important;
     }
 
     #sticky-form-wrapper.is-sticky.visible {
@@ -218,7 +223,10 @@
 
     /* Hide quantity label in sticky mode */
     #sticky-form-wrapper.is-sticky.visible 
-    .form-group.js-form-item.form-item.js-form-type-number.form-item-quantity-0-value.js-form-item-quantity-0-value > label {
+    .form-group.js-form-item.form-item.js-form-type-number.form-item-quantity-0-value.js-form-item-quantity-0-value > label,
+    #sticky-form-wrapper.is-sticky.visible .field.field--name-variations.field--type-entity-reference.field--label-above > .field__label
+    
+    {
         display: none;
     }
 
